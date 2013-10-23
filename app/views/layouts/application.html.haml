@@ -1,0 +1,62 @@
+!!!
+%html
+  %head
+    %title Lythos CRM - 2013
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    = stylesheet_link_tag "application.css", :media => "all"
+    = stylesheet_link_tag "bootstrap"
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800", :rel => "stylesheet", :type => "text/css"}/
+    = csrf_meta_tags
+  %body
+    .header
+      .col-xs-2.logo
+        = link_to image_tag ("template/logo.jpg"), "#"
+      .col-xs-10.personal-info
+        %div
+          = image_tag "template/profile_pic.jpg"
+          %span.user-name
+            Rafael de Matuoka e Chiocchetti
+          = image_tag "template/btn_settings.jpg"
+    .main-content
+      .col-xs-12.col-md-2.container-menu
+        .container
+          %h6 Comercial
+          %ul
+            %li=link_to("Pedidos", "#", :class => "pedidos")
+            %li=link_to("Orçamentos", "#", :class => "orcamentos")
+            
+          %h6 Utilitários
+          %ul
+            %li=link_to("Contatos", "#", :class => "contatos")
+            %li=link_to("Biblioteca", "#", :class => "biblioteca")
+            
+          %h6 Administração
+          %ul
+            %li=link_to("Metas", "#", :class => "metas")
+            %li=link_to("Usuários", "#", :class => "usuarios")
+            %li=link_to("Comunicados", "#", :class => "comunicados")
+            %li=link_to("Regiões", "#", :class => "regioes")
+              
+      .col-xs-12.col-md-10.container-main
+        .row.main-box
+          .col-xs-11
+            = yield
+        
+        .row.footer
+          .col-xs-12
+            = link_to (image_tag("template/sato7.jpg"), "http://www.sato7.com.br", :target => "_blank")
+            
+            = link_to "Política de Privacidade", "#" , :class => "footer-links"
+            = link_to "Termos de Uso", "#", :class => "footer-links"
+            
+  = javascript_include_tag "application"
+  = javascript_include_tag "bootstrap"
+  
+  :javascript
+    $(window).load(function() {
+      $(window).resize();
+    });
+
+    $(window).resize(function() {
+    	resize_layout();
+    });
