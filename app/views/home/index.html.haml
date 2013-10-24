@@ -32,7 +32,7 @@
       %td João Pires
       %td 06/09/2013
 
-  = link_to "Veja a lista completa", "#", :class => "pull-right"
+  = link_to "Veja a lista completa", "#", :class => "pull-right more-link"
 .col-xs-7.comunicados
   %h1 Comunicados
   
@@ -56,8 +56,20 @@
       %p.list-group-item-text
         Donec id elit non mi porta gravida at eget maecenas sed diam.
 
-  = link_to "Veja todos os comunicados", "#", :class => "pull-right"
+  = link_to "Veja todos os comunicados", "#", :class => "pull-right more-link"
 .col-xs-5.contatos
   %h1 Contatos
   %p Donec id elit non mi porta gravida at eget metus  aecenas sed diam.
-  = image_tag "template/banner_biblioteca.jpg", :class => "img-responsive"
+  
+  .panel.panel-default
+    .panel-body      
+      %form.form-inline
+        .form-group
+          %label.sr-only
+            Contato
+          %input.form-control.input-form
+        %button.btn.btn-default
+          Buscar
+  
+  .banner
+    = image_tag "template/banner_biblioteca.jpg", :class => "img-responsive"
