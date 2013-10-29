@@ -1,0 +1,52 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Contatos", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Contatos
+  .col-xs-3
+    %button.btn.btn-default.pull-right.header-button + Contato
+
+.alert.alert-success
+  %b Concluído! 
+  Registro criado/editado com
+  %b sucesso!
+
+.col-xs-12.search
+  %form
+    .col-xs-11
+      %label.sr-only
+        Busca
+      %input.form-control.input-form
+    .col-xs-1
+      %button.btn.btn-default
+        Buscar
+  .clearfix
+
+.row.top-space
+  .col-sm-3
+    .col-sm-12.data-box
+      .col-sm-12.info-box
+        = image_tag("template/profile-pic-big.jpg", :class => "profile-pic-big")
+  
+    .row
+      .col-sm-12
+        = link_to "Alterar foto", "#", :class => "btn btn-white cem_p top-space"
+        <br />
+        = link_to "Editar contato", "#", :class => "btn btn-white cem_p"
+        <br />
+        = link_to "Deletar contato", "#", :class => "btn btn-white cem_p"
+    
+  .col-sm-9
+    %h2 Nome do contato
+    email@email.com <br />
+    00 00000-0000 <br />
+    00 00000-0000 <br />
+    
+    <br />
+    
+    Rua Nome da Rua, 0000 <br />
+    Cidade - UF<br />
+    Brasil<br />
+    

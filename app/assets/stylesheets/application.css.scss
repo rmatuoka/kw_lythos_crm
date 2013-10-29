@@ -14,6 +14,7 @@
 $cinzaE:#272727;
 $cinzaM:#e9ebec;
 $cinzaC:#f3f3f3;
+$mainColor:#c77376;
 
 body
 {
@@ -205,11 +206,7 @@ body
   font-style:oblique;
 }
 
-h1
-{
-  font-size:24px !important;
-  color:#333333;
-}
+
 
 h4
 {
@@ -226,6 +223,50 @@ h4
 {
   font-size:12px !important;
   text-decoration:underline;
+}
+
+.header-button
+{
+  padding:19px !important;
+}
+
+.search
+{
+  padding:15px 0px 15px 0px;
+  background-color:#fff;
+  border:1px solid #e7e7e7;
+}
+
+.btn-white {
+  color: #333;
+  background-color: #fff;
+  border-color: #cccccc !important;
+}
+.btn-white:hover,
+.btn-white:focus,
+.btn-white:active,
+.btn-white.active {
+  color: #c77376;
+  background-color: #fff;
+  border-color: #adadad !important;
+}
+
+.cem_p
+{
+  width:100%;
+}
+
+.form-danger
+{
+  background-color:#f2dede !important;
+  border:1px solid #b74b4b !important;
+}
+
+.form-msg-danger
+{
+  font-size:14px;
+  font-weight:bold;
+  color:#b74b4b;
 }
 
 /* CELULAR */

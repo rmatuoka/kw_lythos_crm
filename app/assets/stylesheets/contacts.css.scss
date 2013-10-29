@@ -1,0 +1,59 @@
+// Place all the styles related to the contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$mainColor:#c77376;
+
+h1
+{
+  font-size:34px !important;
+  color:$mainColor;
+  text-transform:uppercase;
+}
+
+h2
+{
+  font-size:18px !important;
+  color:#333333;
+}
+
+
+
+.ordering-box
+{
+  margin-top:20px;
+  text-align:center;
+  background-color:#fff;
+}
+
+.users
+{
+  margin-top:20px;
+}
+
+.data-box
+{
+  border:1px solid #dddddd;
+  background-color:#fff;
+  padding:15px 0px 15px 0px;
+}
+.info-box
+{
+  background-color:#eeeeee;
+  min-height:50px;
+  height:auto;
+  
+  .picture-list
+  {
+    margin-top:23px;
+  }
+  
+  .profile-pic-big
+  {
+    margin:15px 0px 15px 0px;
+  }
+}
+
+.top-space
+{
+  margin-top:20px;
+}
