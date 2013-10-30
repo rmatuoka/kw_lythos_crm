@@ -1,0 +1,17 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Usuários", "javascript:void(0);"
+
+%h1=t ".title", :resource =>  @user.username
+
+%p=t("activerecord.attributes.user.username")+":"
+ 
+%span=@user.username
+
+%p=t("activerecord.attributes.user.email")+":"
+=@user.email
+
+%p=t("activerecord.attributes.user.role")+":"
+=@user.role
+
+%p=link_to "Voltar", users_path(), :class => "btn btn-default"
