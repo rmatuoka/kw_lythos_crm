@@ -10,12 +10,12 @@
   %body
     .header
       .col-xs-2.logo
-        = link_to image_tag ("template/logo.jpg"), "#"
+        = link_to image_tag ("template/logo.jpg"), root_path
       .col-xs-10.personal-info
         %div
           = image_tag "template/profile_pic.jpg"
           %span.user-name
-            Rafael de Matuoka e Chiocchetti
+            = current_user ? raw(current_user.username+" / "+link_to("Sair", logout_path)) : raw(link_to("Entrar", login_path)+" / "+link_to("Registrar", register_path))
           = image_tag "template/btn_settings.jpg"
     .main-content
       .col-xs-12.col-md-2.container-menu
@@ -33,7 +33,7 @@
           %h6 Administração
           %ul
             %li=link_to("Metas", "#", :class => "metas")
-            %li=link_to("Usuários", "#", :class => "usuarios")
+            %li=link_to("Usuários", users_path, :class => "usuarios")
             %li=link_to("Comunicados", "#", :class => "comunicados")
             %li=link_to("Regiões", "#", :class => "regioes")
               

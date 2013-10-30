@@ -1,0 +1,31 @@
+= form_for @user do |f|
+  = f.error_messages
+  %p
+    = f.label :username
+    = f.text_field :username
+  %p
+    = f.label :email
+    = f.text_field :email
+  %p
+    = f.label :password
+    = f.password_field :password
+  
+  %p
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    
+  %h3=t(".permission")
+  =f.radio_button :role, :administrator
+  =t(".administrator") 
+  <br/>
+
+  =f.radio_button :role, :supervisor 
+  =t(".supervisor") 
+  <br/>
+
+  =f.radio_button :role, :seller 
+  =t(".seller") 
+  <br/>
+  
+  =f.submit nil, :class => "btn btn-default"
+  =link_to "Voltar", users_path(), :class => "btn btn-default"
