@@ -1,0 +1,29 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li=link_to "Regiões", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Regiões
+
+.alert.alert-danger
+  %b Ops!
+  Está faltando alguma coisa
+
+.alert.alert-success
+  %b Concluído!
+  Registro excluido com
+  %b sucesso!
+
+.col-xs-12.search
+  %form
+    .col-xs-11
+      %label.sr-only
+        Busca
+      %input.form-control.input-form
+    .col-xs-1
+      %button.btn.btn-default
+        Buscar
+  .clearfix
+
+= render :partial => "form"

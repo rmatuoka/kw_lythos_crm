@@ -1,0 +1,13 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li=link_to "Comunicados", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Comunicados
+
+.alert.alert-danger
+  %b Ops!
+  Está faltando alguma coisa
+
+= render :partial => "form"

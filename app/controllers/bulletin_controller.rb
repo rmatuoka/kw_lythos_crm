@@ -1,0 +1,2 @@
+class BulletinController < ApplicationController
+end

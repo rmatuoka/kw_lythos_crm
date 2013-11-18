@@ -7,6 +7,8 @@ KwLythosCrm::Application.routes.draw do
 
   resources :contacts
   resources :library
+  resources :bulletin
+  resources :zones
   
   root :to => 'home#index'
   
