@@ -2,6 +2,8 @@ KwLythosCrm::Application.routes.draw do
   resources :home
   resources :contacts
   resources :library
+  resources :bulletin
+  resources :zones
   
   root :to => 'home#index'
   # The priority is based upon order of creation:
