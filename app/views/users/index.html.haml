@@ -7,14 +7,17 @@
 %table.col-xs-12
   %tr
     %th=t("activerecord.attributes.user.username")
-    %th=t("activerecord.attributes.user.email")
+    %th=t("activerecord.attributes.user.email")   
+    %th=t("activerecord.attributes.user.role")  
   - for user in @users
     %tr
       %td= user.username
       %td= user.email
+      %td= user.role
       %td
         =link_to t("show"), user_path(user), :class => "btn btn-info"
         =link_to t("edit"), edit_user_path(user), :class => "btn btn-info"
         =link_to t("delete"), user, :confirm => t("msg_delete"), :method => :delete, :class => "btn btn-info"
+        =link_to "Teste", root_path, :class => "btn btn-info" if  user.role.to_s == "supervisor"
         
 %p= link_to "+ "+  ::User.model_name.human, new_user_path, :class => "btn btn-default"

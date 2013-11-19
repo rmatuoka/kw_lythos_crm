@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :role
+  attr_accessible :username, :email, :password, :password_confirmation, :role 
   
   attr_accessor :role
   
@@ -18,10 +18,8 @@ class User < ActiveRecord::Base
       @role = :administrator
     elsif self.has_role? :supervisor
       @role = :supervisor
-    elsif self.has_role? :seller
+    else self.has_role? :seller
       @role = :seller
-    else
-      @role = :user
     end
   end
 

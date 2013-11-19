@@ -10,8 +10,9 @@ KwLythosCrm::Application.routes.draw do
   resources :bulletin
   resources :zones
   
-  root :to => 'home#index'
+  root :to => 'home#index'    
   
+  match 'register' => "users#new"
   match 'login' => 'user_sessions#new'  
   match 'logout' => 'user_sessions#destroy'
 
