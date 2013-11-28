@@ -1,9 +1,11 @@
 KwLythosCrm::Application.routes.draw do
   resources :user_sessions
 
-  resources(:users){
-    resources :teams
-  }
+  resources(:users) do
+    member do
+      get :teams
+    end
+  end
 
   resources :home
 

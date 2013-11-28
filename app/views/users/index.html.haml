@@ -1,6 +1,6 @@
 %ol.breadcrumb
-  %li=link_to "Home", "javascript:void(0);"
-  %li.active=link_to "Usuários", "javascript:void(0);"
+  %li=link_to "Home", root_path
+  %li.active=link_to "Usuários", users_path
 
 %p= link_to "+ "+  ::User.model_name.human, new_user_path, :class => "btn btn-default"
 
@@ -18,6 +18,6 @@
         =link_to t("show"), user_path(user), :class => "btn btn-info"
         =link_to t("edit"), edit_user_path(user), :class => "btn btn-info"
         =link_to t("delete"), user, :confirm => t("msg_delete"), :method => :delete, :class => "btn btn-info"
-        =link_to "Teste", root_path, :class => "btn btn-info" if  user.role.to_s == "supervisor"
+        =link_to t("team_users"), teams_user_path(user), :class => "btn btn-info" if  user.role.to_s == "supervisor"
         
 %p= link_to "+ "+  ::User.model_name.human, new_user_path, :class => "btn btn-default"

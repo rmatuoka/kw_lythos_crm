@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     redirect_to users_path, :notice => "Usuário Deletado com sucesso!"
   end    
   
-  def team
+  def teams
     @user = User.find(params[:id])
     @teams = @user.collaborators
   end

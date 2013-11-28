@@ -1,0 +1,17 @@
+%ol.breadcrumb
+  %li=link_to "Home", root_path
+  %li=link_to "Usuários", users_path    
+  %li.active=link_to t("team_users") + " - " + @user.username, "javascript:void(0);"   
+
+-if @teams.count > 0
+  %table.col-xs-12
+    %tr
+      %th=t("activerecord.attributes.user.username")
+      %th=t("activerecord.attributes.user.email")   
+    - for team in @teams
+      %tr
+        %td= team.username
+        %td= team.email      
+
+-else
+  %h3 Nenhuma equipe encontrada!
