@@ -25,7 +25,11 @@
 
   =f.radio_button :role, :seller 
   =t(".seller") 
-  <br/>
-  
+  <br/> 
+  -if @user.role.to_s == "supervisor" 
+    %h3=t(".team_users")
+    -User.all.each do |user|
+      = check_box_tag 'user[collaborator_ids][]', user.id, @user.collaborators.include?(user), :class=> "input_radio" if user.id != @user.id
+      = user.username  if user.id != @user.id 
   =f.submit nil, :class => "btn btn-default"
   =link_to "Voltar", users_path(), :class => "btn btn-default"

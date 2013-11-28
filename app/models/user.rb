@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :role 
+  attr_accessible :username, :email, :password, :password_confirmation, :role, :collaborator_ids
   
-  attr_accessor :role
+  attr_accessor :role  
+  #has_many :teams
+  #has_many :collaborators, :through => :teams, :source => :collaborator  
+  has_and_belongs_to_many :collaborators, :class_name => "User", :join_table => "collaborators_users", :foreign_key => "user_id", :association_foreign_key => "collaborator_id"
   
   acts_as_authentic do |c|
     c.login_field = "email"

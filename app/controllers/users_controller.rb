@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) 
   end
   
   def show
@@ -28,6 +28,9 @@ class UsersController < ApplicationController
   end
   
   def update
+    if params[:user][:collaborator_ids].nil?
+      params[:user][:collaborator_ids] = []
+    end
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to user_path(@user), :notice  => "Successfully updated user."
@@ -40,6 +43,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path, :notice => "Usuário Deletado com sucesso!"
+  end    
+  
+  def team
+    @user = User.find(params[:id])
+    @teams = @user.collaborators
   end
   
 end
