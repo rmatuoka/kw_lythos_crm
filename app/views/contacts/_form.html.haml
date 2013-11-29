@@ -1,18 +1,24 @@
 .row
   .col-sm-12.top-space
-    %p.form-msg-danger Este campo está incorreto:
-    %input.form-control.form-danger{:type => "text", :placeholder => "Nome Completo"}
-    <br />
-    %input.form-control{:type => "text", :placeholder => "E-Mail"}
-    <br />
-    %input.form-control{:type => "text", :placeholder => "CPF/CNPJ"}
-    <br />
-    %input.form-control{:type => "text", :placeholder => "Endereço"}
-    <br />
-    %input.form-control{:type => "text", :placeholder => "Cidade"}
-    <br />
-    %input.form-control{:type => "text", :placeholder => "Telefone"}
-    <br />
-    %input.form-control{:type => "text", :placeholder => "Celular"}
-    <br />
-    %input.btn.btn-default.pull-right{:Value => "Salvar"}
+    = form_for @contact do |f|    
+      %p.form-msg-danger Este campo está incorreto:
+      -#%input.form-control.form-danger{:type => "text", :placeholder => "Nome Completo"}
+      = f.text_field :name, :class => "form-control", :placeholder => "Nome Completo"
+      <br />
+      = f.text_field :email, :class => "form-control", :placeholder => "E-mail"
+      <br />
+      = f.text_field :cpf_cnpj, :class => "form-control", :placeholder => "CPF/CNPJ"
+      <br />
+      = f.text_field :address, :class => "form-control", :placeholder => "Endereço"
+      <br />
+      = f.text_field :city, :class => "form-control", :placeholder => "Cidade"
+      <br />
+      = f.text_field :state, :class => "form-control", :placeholder => "Estado"
+      <br />
+      = f.text_field :phone, :class => "form-control", :placeholder => "Telefone"
+      <br />
+      = f.text_field :cellphone, :class => "form-control", :placeholder => "Celular"
+      <br />
+      = submit_tag "Salvar", :class => "btn btn-default pull-right"
+    
+    

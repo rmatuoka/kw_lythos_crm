@@ -1,0 +1,30 @@
+class OrdersController < ApplicationController
+  def index
+    @proposals = Proposal.all(:conditions => ['status > 2'])
+  end
+  
+  def show
+    @proposal = Proposal.find(params[:id])
+  end
+  
+  def production
+    @proposal = Proposal.find(params[:id])
+    @proposal.status = 4
+    @proposal.save
+    redirect_to orders_path, :notice => "Status alterado com sucesso!"
+  end
+  
+  def sent
+    @proposal = Proposal.find(params[:id])
+    @proposal.status = 5
+    @proposal.save
+    redirect_to orders_path, :notice => "Status alterado com sucesso!"
+  end
+  
+  def delivered
+    @proposal = Proposal.find(params[:id])
+    @proposal.status = 6
+    @proposal.save
+    redirect_to orders_path, :notice => "Status alterado com sucesso!"
+  end
+end

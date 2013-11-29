@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  proposal_id: 1
+  quantity: 1
+  value: 9.99
+  product: MyString
+
+two:
+  proposal_id: 1
+  quantity: 1
+  value: 9.99
+  product: MyString

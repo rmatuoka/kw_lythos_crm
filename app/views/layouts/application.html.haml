@@ -22,19 +22,19 @@
         .container
           %h6 Comercial
           %ul
-            %li=link_to("Pedidos", "#", :class => "pedidos")
-            %li=link_to("Orçamentos", "#", :class => "orcamentos")
+            %li=link_to("Pedidos", orders_path, :class => "pedidos")
+            %li=link_to("Orçamentos", proposals_path, :class => "orcamentos")
             
           %h6 Utilitários
           %ul
-            %li=link_to("Contatos", "#", :class => "contatos")
-            %li=link_to("Biblioteca", "#", :class => "biblioteca")
+            %li=link_to("Contatos", contacts_path, :class => "contatos")
+            %li=link_to("Biblioteca", libraries_path, :class => "biblioteca")
             
           %h6 Administração
           %ul
             %li=link_to("Metas", "#", :class => "metas")
             %li=link_to("Usuários", users_path, :class => "usuarios")
-            %li=link_to("Comunicados", "#", :class => "comunicados")
+            %li=link_to("Comunicados", new_bulletin_path, :class => "comunicados")
             %li=link_to("Regiões", "#", :class => "regioes")
               
       .col-xs-12.col-md-10.container-main
@@ -51,7 +51,8 @@
             
   = javascript_include_tag "application"
   = javascript_include_tag "bootstrap"
-  
+  = javascript_include_tag "functions"
+  = yield :scripts
   :javascript
     $(window).load(function() {
       $(window).resize();

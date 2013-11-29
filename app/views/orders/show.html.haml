@@ -1,0 +1,70 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li=link_to "Orçamentos", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Detalhes do Pedido
+
+- if flash[:error]
+  .alert.alert-danger
+    %b Ops!
+    Está faltando alguma coisa
+                   
+.col-xs-7.comunicados
+  %h3 Cliente
+  %h2.details=@proposal.contact_id
+  
+  %h3 Email
+  %h2.details=@proposal.email
+  
+  %h3 Com cópia para
+  %h2.details=@proposal.cc
+  <br /><br /><br /><br />
+  
+.col-xs-5.comunicados
+  %h3 Código do Pedido
+  %h2.details.red="Orçamento Nº #{@proposal.id}"
+
+.col-xs-7.comunicados
+  %table.table.table-condensed
+    %tr
+      %th Produto
+      %th Preço Un.
+      %th Qnt.
+      %th Subtotal
+      - $total = 0
+      - @proposal.proposal_items.all.each do |item|  
+        - $total = $total + (item.value * item.quantity)
+        %tr
+          %td=item.product
+          %td=item.value
+          %td=item.quantity
+          %td=item.value * item.quantity
+  
+  .total.pull-right
+    Total
+    %span.red="#{number_to_currency($total)}"
+  
+.col-xs-5.comunicados
+  %h3 Endereço de Entrega
+  %h2.details="#{@proposal.address}, #{@proposal.number}"
+  
+  %h3 CEP
+  %h2.details="#{@proposal.postal_code}"
+  
+  %h3 Cidade
+  %h2.details="#{@proposal.city}"
+  
+  %h3 Cidade
+  %h2.details="#{@proposal.state}"
+  
+.col-xs-7.comunicados
+  %h5 Atualize o status do pedido
+  .btn-group
+    = link_to "Em Produção", production_order_path(@proposal), :class => "btn btn-white"
+    = link_to "Enviado", sent_order_path(@proposal), :class => "btn btn-white"
+    = link_to "Entregue", delivered_order_path(@proposal), :class => "btn btn-white"
+
+    
+    <br /><br />

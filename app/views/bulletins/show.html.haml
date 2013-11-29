@@ -1,0 +1,16 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li=link_to "Comunicados", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h2=@bulletin.title
+    %p
+      %b
+        Enviado por 
+        %span.red administrador 
+        dia 12/09/2013
+    
+    %p
+      =@bulletin.message
+    =link_to "Voltar", "javascript:history.go(-1);", :class => "btn btn-default pull-right"

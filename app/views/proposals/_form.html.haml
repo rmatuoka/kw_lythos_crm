@@ -1,0 +1,57 @@
+.row
+  .col-sm-12.top-space
+    = form_for @proposal do |f|    
+      //%p.form-msg-danger Este campo está incorreto:
+      %select.form-control
+        %option Clientes
+      <br />
+      = f.text_field :email, :class => "form-control", :placeholder => "E-mail"
+      <br />
+      = f.text_field :cc, :class => "form-control", :placeholder => "Com cópia para"
+      <br />
+      
+      - if !@edit
+        %h2 Selecione os produtos
+        .col-xs-12.search
+          .col-xs-7
+            %input.form-control.produto{:placeholder => "Produto"}
+          .col-xs-2
+            %input.form-control.preco{:placeholder => "Preço Un."}
+          .col-xs-2
+            %input.form-control.qtde{:placeholder => "Qtde."}
+          .col-xs-1
+            %a.btn.btn-default.submit-item +
+        
+          <br /><br />
+        
+          #items
+      -else
+        %h2 Produtos
+        
+        %table.table.table-condensed
+          - @proposal.proposal_items.each do |p|
+            %tr
+              %td=p.quantity
+              %td=p.product
+              %td=number_to_currency(p.value)
+              %td=number_to_currency(p.quantity * p.value)
+            
+      .clearfix
+      
+      %h2 Endereço de Entrega
+      = f.text_field :address, :class => "form-control", :placeholder => "Endereço"
+      <br />
+      = f.text_field :number, :class => "form-control", :placeholder => "Número"
+      <br />
+      = f.text_field :city, :class => "form-control", :placeholder => "Cidade"
+      <br />
+      = f.text_field :state, :class => "form-control", :placeholder => "Estado"
+      <br />
+      = f.text_field :postal_code, :class => "form-control", :placeholder => "CEP"
+      <br />
+      - if @edit
+        = link_to "Reprovar", denial_proposal_path(@proposal), :class => "reprovado btn btn-white pull-right"
+        = link_to "Aprovar", approve_proposal_path(@proposal), :class => "aprovado btn btn-white pull-right"
+        <br />
+      <br />
+      = submit_tag "Salvar", :class => "btn btn-default pull-right"

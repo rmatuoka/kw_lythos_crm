@@ -1,3 +1,6 @@
+var total_items = 0;
+var table = ""
+
 function resize_layout()
 {
   var size_of_header = $(".header").height();
@@ -18,4 +21,38 @@ function resize_layout()
 	
 	//$(".main-box").css("height", "auto");
 	//$(".main-box").css("min-height", height_content - size_of_footer);
+}
+
+
+function add_item_to_proposal(qtde, name, value)
+{
+  if(qtde != "" && qtde > "" && name != ""  && value != "" && value > 0 )
+  {
+     
+    table += "<table class=\"table table-condensed\">"
+    table += "<tbody>"
+    table += "<tr>"
+    table += "  <td>"+ qtde +"</td>"
+    table += "  <td>"+ name +"</td>"
+    table += "  <td> R$"+ value +"</td>"
+    table += "  <td>"+ value * qtde+"</td>"
+    table += "</tr>"
+    table += "</tbody></table>"
+    
+    table += "<input type='hidden' name='proposals[items][item_"+ total_items +"][quantity]' value='"+ qtde +"' />"
+    table += "<input type='hidden' name='proposals[items][item_"+ total_items +"][product]' value='"+ name +"' />"
+    table += "<input type='hidden' name='proposals[items][item_"+ total_items +"][value]' value='"+ value +"' />"
+
+    $("#items").html(table);
+  
+    total_items ++;
+  }
+  else
+  {
+    alert("Atenção! \n\n Preencha os campos corretamente.");
+  }
+
+  
+
+  //alert(table);
 }

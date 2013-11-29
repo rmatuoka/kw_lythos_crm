@@ -1,14 +1,29 @@
 KwLythosCrm::Application.routes.draw do
+  
   resources :user_sessions
-
   resources :users
-
   resources :home
-
   resources :contacts
-  resources :library
-  resources :bulletin
+  resources(:libraries){
+    collection do
+      get 'search'
+    end
+  }
+  resources :bulletins
   resources :zones
+  resources(:proposals){
+    member do
+      get 'approve'
+      get 'denial'
+    end
+  }
+  resources(:orders){
+    member do
+      get 'production'
+      get 'sent'
+      get 'delivered'
+    end
+  }
   
   root :to => 'home#index'    
   

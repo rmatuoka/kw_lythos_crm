@@ -1,0 +1,46 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Orçamentos", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Pedidos
+  .col-xs-3
+    //=link_to "+ Orçamento", new_proposal_path, :class => "btn btn-default pull-right header-button"
+
+- if flash[:notice]
+  .alert.alert-success
+    %b Concluído! 
+    Registro modificado com
+    %b sucesso!
+
+.col-xs-12.search
+  %form
+    .col-xs-11
+      %label.sr-only
+        Busca
+      %input.form-control.input-form{:name => "search"}
+    .col-xs-1
+      %input.btn.btn-default{:type => "submit", :value => "Buscar"}
+  .clearfix
+
+.users  
+  %table.table.table-condensed
+    %tr
+      %th
+      %th Cliente
+      %th Valor
+      %th Data
+      %th Status
+      %th 
+    - @proposals.each do |p|
+      - $total_items = 0;
+      - p.proposal_items.all.each do |item|
+        -$total_items = $total_items + (item.value * item.quantity)
+      %tr
+        %td=p.id
+        %td=p.contact_id
+        %td=number_to_currency($total_items)
+        %td=p.created_at.strftime("%d %m %Y")
+        %td Enviado
+        %td=link_to "Detalhes", order_path(p)
