@@ -1,0 +1,27 @@
+-content_for :scripts do
+  :javascript
+    $(document).ready(function(){
+      
+    });
+
+    $(".submit-item").click(function(){
+      var qtde = $(".qtde").val();
+      var name = $(".produto").val();
+      var value = $(".preco").val();
+      add_item_to_proposal(qtde, name, value);
+    });
+
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li=link_to "Orçamentos", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Novo Orçamento
+
+- if flash[:error]
+  .alert.alert-danger
+    %b Ops!
+    Está faltando alguma coisa
+
+= render :partial => "form"

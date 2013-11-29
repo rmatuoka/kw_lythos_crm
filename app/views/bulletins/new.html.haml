@@ -6,8 +6,9 @@
   .col-xs-9
     %h1 Comunicados
 
-.alert.alert-danger
-  %b Ops!
-  Está faltando alguma coisa
+- if flash[:error]
+  .alert.alert-danger
+    %b Ops!
+    Está faltando alguma coisa
 
 = render :partial => "form"

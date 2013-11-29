@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126120901) do
+ActiveRecord::Schema.define(:version => 20131129134846) do
 
   create_table "bulletins", :force => true do |t|
     t.string   "title"
@@ -57,6 +57,29 @@ ActiveRecord::Schema.define(:version => 20131126120901) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "proposal_items", :force => true do |t|
+    t.integer  "proposal_id"
+    t.integer  "quantity"
+    t.decimal  "value",       :precision => 10, :scale => 2, :default => 0.0
+    t.string   "product"
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  create_table "proposals", :force => true do |t|
+    t.integer  "contact_id"
+    t.string   "email"
+    t.string   "cc"
+    t.string   "address"
+    t.string   "number"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.integer  "status",      :default => 1
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name",              :limit => 40
     t.string   "authorizable_type", :limit => 40
@@ -81,13 +104,6 @@ ActiveRecord::Schema.define(:version => 20131126120901) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "teams", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "collaborator_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
 
   create_table "users", :force => true do |t|
     t.string   "username"

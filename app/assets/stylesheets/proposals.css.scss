@@ -1,0 +1,48 @@
+// Place all the styles related to the proposals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.aprovado
+{
+  color:Green;
+}
+
+.reprovado
+{
+  color:Red;
+}
+
+.search
+{
+  height:auto;
+  min-height:65px !important;
+}
+
+h3
+{
+  font-size:14px !important;
+  color:#959595;
+  margin:0px !important;
+  padding:0px !important;
+}
+
+.details
+{
+  margin:5px 0px 15px 0px !important;
+}
+
+.red
+{
+  color:#c77376 !important;
+}
+
+h5
+{
+  font-size:24px !important;
+  color:#333333 !important;
+}
+
+.total
+{
+  font-size:24px;
+  color:#333333;
+}

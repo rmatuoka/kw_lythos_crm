@@ -6,12 +6,13 @@
   .col-xs-9
     %h1 Contatos
   .col-xs-3
-    %button.btn.btn-default.pull-right.header-button + Contato
+    =link_to "+ Contato", new_contact_path, :class => "btn btn-default pull-right header-button"
 
-.alert.alert-success
-  %b Concluído! 
-  Registro criado/editado com
-  %b sucesso!
+- if flash[:notice]
+  .alert.alert-success
+    %b Concluído! 
+    Registro criado/editado com
+    %b sucesso!
 
 .col-xs-12.search
   %form
@@ -34,19 +35,22 @@
       .col-sm-12
         = link_to "Alterar foto", "#", :class => "btn btn-white cem_p top-space"
         <br />
-        = link_to "Editar contato", "#", :class => "btn btn-white cem_p"
+        = link_to "Editar contato", edit_contact_path(@contact), :class => "btn btn-white cem_p"
         <br />
-        = link_to "Deletar contato", "#", :class => "btn btn-white cem_p"
+        =link_to "Deletar contato", @contact, :confirm => "Deseja excluir este registro?", :method => :delete, :class => "btn btn-white cem_p"
     
   .col-sm-9
-    %h2 Nome do contato
-    email@email.com <br />
-    00 00000-0000 <br />
-    00 00000-0000 <br />
-    
+    %h2=@contact.name
+    =@contact.email 
+    <br />
+    =@contact.phone
+    <br />
+    =@contact.cellphone
+    <br />
     <br />
     
-    Rua Nome da Rua, 0000 <br />
-    Cidade - UF<br />
-    Brasil<br />
+    =@contact.address
+    <br />
+    ="#{@contact.city} - #{@contact.state}"
+    <br />
     

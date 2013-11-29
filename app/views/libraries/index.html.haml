@@ -1,0 +1,50 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Contatos", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 biblioteca
+  .col-xs-3
+    = link_to "+ Arquivo", new_library_path, :class => "btn btn-default pull-right header-button"
+
+- if flash[:notice]
+  .alert.alert-success
+    %b Concluído! 
+    Registro excluido com
+    %b sucesso!
+
+.col-xs-12.search
+  %form{:action => "/libraries/search"}
+    .col-xs-11
+      %label.sr-only
+        Busca
+      %input.form-control.input-form{:name => "search"}
+    .col-xs-1
+      %input.btn.btn-default{:type => "submit", :value => "Buscar"}
+  .clearfix
+
+- @library_categories.each do |lib|
+  %h2=lib.name
+  .users.row
+    -lib.libraries.each do |l|
+      .col-sm-6.bottom-space-30
+        .col-sm-12.data-box
+          .col-sm-12.info-box
+            .col-sm-3
+              = image_tag("template/ico_docx.png", :class =>"file-list")
+            .col-sm-9
+              %h2=l.name
+              %p 
+                Tamanho: 
+                =number_to_human_size(l.file_file_size)   
+                <br />
+                Criado em: 
+                =l.created_at.strftime("%d/%m/%Y") 
+                <br />
+
+                = link_to "Download", l.file.url()
+                | 
+                =link_to "Deletar", l, :confirm => "Deseja excluir este registro?", :method => :delete
+
+            .clearfix

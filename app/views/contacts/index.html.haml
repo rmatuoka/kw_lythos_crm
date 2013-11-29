@@ -6,168 +6,69 @@
   .col-xs-9
     %h1 Contatos
   .col-xs-3
-    %button.btn.btn-default.pull-right.header-button + Contato
+    =link_to "+ Contato", new_contact_path, :class => "btn btn-default pull-right header-button"
 
-.alert.alert-success
-  %b Concluído! 
-  Registro excluido com
-  %b sucesso!
+- if flash[:notice]
+  .alert.alert-success
+    %b Concluído! 
+    Registro excluido com
+    %b sucesso!
 
 .col-xs-12.search
   %form
     .col-xs-11
       %label.sr-only
         Busca
-      %input.form-control.input-form
+      %input.form-control.input-form{:name => "search"}
     .col-xs-1
-      %button.btn.btn-default
-        Buscar
+      %input.btn.btn-default{:type => "submit", :value => "Buscar"}
   .clearfix
 
 .col-xs-12.ordering-box
   .btn-group
-    %button.btn.btn-white #
-    %button.btn.btn-white A
-    %button.btn.btn-white B
-    %button.btn.btn-white C
-    %button.btn.btn-white D
-    %button.btn.btn-white E
-    %button.btn.btn-white F
-    %button.btn.btn-white G
-    %button.btn.btn-white H
-    %button.btn.btn-white I
-    %button.btn.btn-white J
-    %button.btn.btn-white K
-    %button.btn.btn-white L
-    %button.btn.btn-white M
-    %button.btn.btn-white N
-    %button.btn.btn-white O
-    %button.btn.btn-white P
-    %button.btn.btn-white Q
-    %button.btn.btn-white R
-    %button.btn.btn-white S
-    %button.btn.btn-white T
-    %button.btn.btn-white U
-    %button.btn.btn-white V
-    %button.btn.btn-white W
-    %button.btn.btn-white X
-    %button.btn.btn-white Y
-    %button.btn.btn-white Z
+    %a.btn.btn-white{:href => "/contacts"} Todos
+    %a.btn.btn-white{:href => "?filter=#"} #
+    %a.btn.btn-white{:href => "?filter=a"} A
+    %a.btn.btn-white{:href => "?filter=b"} B
+    %a.btn.btn-white{:href => "?filter=c"} C
+    %a.btn.btn-white{:href => "?filter=d"} D
+    %a.btn.btn-white{:href => "?filter=e"} E
+    %a.btn.btn-white{:href => "?filter=f"} F
+    %a.btn.btn-white{:href => "?filter=g"} G
+    %a.btn.btn-white{:href => "?filter=h"} H
+    %a.btn.btn-white{:href => "?filter=i"} I
+    %a.btn.btn-white{:href => "?filter=j"} J
+    %a.btn.btn-white{:href => "?filter=k"} K
+    %a.btn.btn-white{:href => "?filter=l"} L
+    %a.btn.btn-white{:href => "?filter=m"} M
+    %a.btn.btn-white{:href => "?filter=n"} N
+    %a.btn.btn-white{:href => "?filter=o"} O
+    %a.btn.btn-white{:href => "?filter=p"} P
+    %a.btn.btn-white{:href => "?filter=q"} Q
+    %a.btn.btn-white{:href => "?filter=r"} R
+    %a.btn.btn-white{:href => "?filter=s"} S
+    %a.btn.btn-white{:href => "?filter=t"} T
+    %a.btn.btn-white{:href => "?filter=u"} U
+    %a.btn.btn-white{:href => "?filter=v"} V
+    %a.btn.btn-white{:href => "?filter=w"} W
+    %a.btn.btn-white{:href => "?filter=x"} X
+    %a.btn.btn-white{:href => "?filter=y"} Y
+    %a.btn.btn-white{:href => "?filter=z"} Z
 
 .users  
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix
+  - @contacts.each do |contact|
+    .col-sm-4.bottom-space-30
+      .col-sm-12.data-box
+        .col-sm-12.info-box
+          .col-sm-4
+            = link_to (image_tag("template/profile_pic.jpg", :class =>"picture-list"), contact_path(contact))
+          .col-sm-8
+            %h2=contact.name
+            %p 
+              =contact.email
+              <br />
+              =contact.phone
+              <br />
+              =contact.cellphone
+          .clearfix
         
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix
-        
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix
-
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix
-        
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix  
-        
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix
-        
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix
-
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix  
-
-  .col-sm-4.bottom-space-30
-    .col-sm-12.data-box
-      .col-sm-12.info-box
-        .col-sm-4
-          = image_tag("template/profile_pic.jpg", :class =>"picture-list")
-        .col-sm-8
-          %h2 João da Silva
-          %p 
-            email@email.com <br />
-            00 00000-0000 <br />
-            00 00000-0000
-        .clearfix

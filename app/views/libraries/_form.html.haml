@@ -1,0 +1,14 @@
+.row
+  .col-sm-12.top-space
+    = form_for @library do |f|    
+      %p.form-msg-danger Este campo está incorreto:
+      = f.text_field :name, :class => "form-control", :placeholder => "Nome do Arquivo"
+      //%input.form-control.form-danger{:type => "text", :placeholder => "Nome do Arquivo"}
+      <br />
+      = f.select :library_category_id, @categories
+      %button.btn.btn-white Nova Categoria
+      <br /><br />
+      = f.file_field :file, :class =>"form-control"
+      <br />
+      
+      = submit_tag "Salvar", :class => "btn btn-default pull-right"

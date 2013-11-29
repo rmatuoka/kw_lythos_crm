@@ -1,0 +1,26 @@
+.row
+  .col-sm-12.top-space
+    = form_for @bulletin do |f|    
+      //%p.form-msg-danger Este campo está incorreto:
+      = f.text_field :title, :class => "form-control", :placeholder => "Titulo"
+      <br />
+      %select.form-control
+        %option teste
+      <br />
+      = f.text_area :message, :class => "form-control", :placeholder => "Mensagem"
+      <br />
+      
+      = submit_tag "Salvar", :class => "btn btn-default pull-right"
+    
+    
+  .col-sm-12
+    %h2 Comunicados
+    .list-group
+      - @bulletins.each do |b|
+        %a.list-group-item
+          %h4.list-group-item-heading 
+            = b.title
+            %span.list-group-date 13.10.2013
+          %p.list-group-item-text
+            = truncate(b.message)
+            //= b.message
