@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   access_control do
       allow :administrator, :all
   end
+  
   def index
     @users = User.all
   end

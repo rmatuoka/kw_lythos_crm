@@ -39,8 +39,18 @@
         -$total_items = $total_items + (item.value * item.quantity)
       %tr
         %td=p.id
-        %td=p.contact_id
+        %td=link_to p.contact.name, contact_path(p.contact.id), :class => "red"
         %td=number_to_currency($total_items)
         %td=p.created_at.strftime("%d %m %Y")
-        %td Enviado
-        %td=link_to "Detalhes", order_path(p)
+        %td 
+          - case p.status
+            - when 3
+              %span.aprovado Aprovado
+            - when 4
+              %span.producao Em Produção
+            - when 5
+              %span.enviado Enviado
+            - when 6
+              %span.entregue Entregue
+              
+        %td=link_to "Detalhes", order_path(p), :class => "red"

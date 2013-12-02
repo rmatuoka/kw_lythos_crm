@@ -1,16 +1,19 @@
 .row
-  .col-sm-12.top-space
-    = form_for @bulletin do |f|    
-      //%p.form-msg-danger Este campo está incorreto:
-      = f.text_field :title, :class => "form-control", :placeholder => "Titulo"
-      <br />
-      %select.form-control
-        %option teste
-      <br />
-      = f.text_area :message, :class => "form-control", :placeholder => "Mensagem"
-      <br />
+  - if current_user.has_role?(:administrator)
+    .col-sm-12.top-space
+      = form_for @bulletin do |f|    
+        //%p.form-msg-danger Este campo está incorreto:
+        = f.text_field :title, :class => "form-control", :placeholder => "Titulo"
+        <br />
+        %select.form-control
+          %option Todos
+          %option Supervisores
+          %option Vendedores
+        <br />
+        = f.text_area :message, :class => "form-control", :placeholder => "Mensagem"
+        <br />
       
-      = submit_tag "Salvar", :class => "btn btn-default pull-right"
+        = submit_tag "Salvar", :class => "btn btn-default pull-right"
     
     
   .col-sm-12
@@ -20,7 +23,7 @@
         %a.list-group-item
           %h4.list-group-item-heading 
             = b.title
-            %span.list-group-date 13.10.2013
+            %span.list-group-date=b.created_at.strftime("%d.%m.%Y")
           %p.list-group-item-text
-            = truncate(b.message)
+            =truncate(b.message)
             //= b.message

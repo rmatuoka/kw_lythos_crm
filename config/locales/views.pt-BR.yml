@@ -7,7 +7,7 @@ pt-BR:
     show:
       title: Dados do Usuário - %{resource}
     form:
-      permission: Permissão
+      permission: Selecione o tipo de usuário
       administrator: Administrador
       supervisor: Supervisor
       seller: Vendedor

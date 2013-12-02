@@ -1,0 +1,10 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Login", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Login
+
+.col-xs-12
+  = render 'form'

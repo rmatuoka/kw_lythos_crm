@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  access_control do
+      allow :administrator, :all
+  end
+  
   def index
     @proposals = Proposal.all(:conditions => ['status > 2'])
   end
@@ -11,6 +15,8 @@ class OrdersController < ApplicationController
     @proposal = Proposal.find(params[:id])
     @proposal.status = 4
     @proposal.save
+    UserMailer.proposal_status_changed(@proposal).deliver
+    
     redirect_to orders_path, :notice => "Status alterado com sucesso!"
   end
   
@@ -18,6 +24,8 @@ class OrdersController < ApplicationController
     @proposal = Proposal.find(params[:id])
     @proposal.status = 5
     @proposal.save
+    UserMailer.proposal_status_changed(@proposal).deliver
+    
     redirect_to orders_path, :notice => "Status alterado com sucesso!"
   end
   
@@ -25,6 +33,8 @@ class OrdersController < ApplicationController
     @proposal = Proposal.find(params[:id])
     @proposal.status = 6
     @proposal.save
+    UserMailer.proposal_status_changed(@proposal).deliver
+    
     redirect_to orders_path, :notice => "Status alterado com sucesso!"
   end
 end

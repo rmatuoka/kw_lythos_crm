@@ -1,8 +1,9 @@
 class LibrariesController < ApplicationController
   before_filter :load_categories
-  #access_control do
-  #    allow :administrator, :all
-  #end
+  
+  access_control do
+      allow :administrator, :all
+  end
   
   def index
     @library_categories = LibraryCategory.all

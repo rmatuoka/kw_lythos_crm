@@ -16,60 +16,41 @@
       %th Cliente
       %th Representantes
       %th Data
-    %tr
-      %td 1
-      %td C&C
-      %td João Pires
-      %td 06/09/2013
-    %tr
-      %td 1
-      %td C&C
-      %td João Pires
-      %td 06/09/2013
-    %tr
-      %td 1
-      %td C&C
-      %td João Pires
-      %td 06/09/2013
+    - @proposals.each do |p|
+      %tr
+        %td=p.id
+        %td=p.contact.name
+        %td=p.user.username
+        %td=p.created_at.strftime("%d.%m.%Y")
 
-  = link_to "Veja a lista completa", "#", :class => "pull-right more-link"
+  = link_to "Veja a lista completa", orders_path, :class => "pull-right more-link"
 .col-xs-7.comunicados
   %h1.h1-home Comunicados
   
   .list-group
-    %a.list-group-item.active
-      %h4.list-group-item-heading 
-        Comunicado da diretoria
-        %span.list-group-date 13.10.2013
-      %p.list-group-item-text
-        Donec id elit non mi porta gravida at eget maecenas sed diam.
-    %a.list-group-item
-      %h4.list-group-item-heading 
-        Metas para 2013
-        %span.list-group-date 13.10.2013
-      %p.list-group-item-text
-        Donec id elit non mi porta gravida at eget maecenas sed diam.
-    %a.list-group-item
-      %h4.list-group-item-heading 
-        Bem vindo ao CRM Lythos
-        %span.list-group-date 13.10.2013
-      %p.list-group-item-text
-        Donec id elit non mi porta gravida at eget maecenas sed diam.
+    - @bulletins.each do |b|
+      %a.list-group-item
+        %h4.list-group-item-heading 
+          = b.title
+          %span.list-group-date=b.created_at.strftime("%d.%m.%Y")
+        %p.list-group-item-text
+          =truncate(b.message)
 
-  = link_to "Veja todos os comunicados", "#", :class => "pull-right more-link"
+
+  = link_to "Veja todos os comunicados", new_bulletin_path, :class => "pull-right more-link"
 .col-xs-5.contatos
   %h1.h1-home Contatos
-  %p Donec id elit non mi porta gravida at eget metus  aecenas sed diam.
+  %p Busque seus contatos. Não se esqueça de manter sua agenda atualizada.
   
   .panel.panel-default
     .panel-body      
-      %form.form-inline
+      %form.form-inline{:action => "/contacts"}
         .form-group
           %label.sr-only
             Contato
-          %input.form-control.input-form
+          %input.form-control.input-form{:name => "search"}
         %button.btn.btn-default
           Buscar
   
   .banner
-    = image_tag "template/banner_biblioteca.jpg", :class => "img-responsive"
+    = link_to image_tag("template/banner_biblioteca.jpg", :class => "img-responsive"), libraries_path

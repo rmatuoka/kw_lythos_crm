@@ -2,13 +2,14 @@
   .col-sm-12.top-space
     = form_for @proposal do |f|    
       //%p.form-msg-danger Este campo está incorreto:
-      %select.form-control
-        %option Clientes
-      <br />
+      = f.select :contact_id, @contacts, :class => "form-control"
+      <br /><br />
       = f.text_field :email, :class => "form-control", :placeholder => "E-mail"
       <br />
       = f.text_field :cc, :class => "form-control", :placeholder => "Com cópia para"
       <br />
+      
+      = f.hidden_field :user_id, :value => current_user.id.to_s
       
       - if !@edit
         %h2 Selecione os produtos

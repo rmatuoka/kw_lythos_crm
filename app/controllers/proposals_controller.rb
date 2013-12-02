@@ -1,6 +1,12 @@
 class ProposalsController < ApplicationController
+  before_filter :load_contacts
+  
+  access_control do
+      allow :administrator, :all
+  end
+  
   def index
-    @proposals = Proposal.all
+    @proposals = Proposal.all(:conditions => ['status < 4'])
   end
   
   def new
@@ -22,7 +28,10 @@ class ProposalsController < ApplicationController
         @proposal_item.save
       end
       
-      redirect_to proposal_path(@proposal), :notice => "Successfully created user."
+      #ENVIA EMAIL
+      UserMailer.proposal_send(@proposal).deliver
+      
+      redirect_to proposals_path, :notice => "Successfully created user."
     else
       render :action => 'new'
     end
@@ -40,7 +49,7 @@ class ProposalsController < ApplicationController
   def update
     @proposal = Proposal.find(params[:id])
     if @proposal.update_attributes(params[:proposal])
-      redirect_to proposal_path(@proposal), :notice  => "Successfully updated user."
+      redirect_to proposals_path, :notice  => "Successfully updated user."
     else
       render :action => 'edit'
     end
@@ -56,6 +65,8 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id])
     @proposal.status = 3
     @proposal.save
+    UserMailer.proposal_status_changed(@proposal).deliver
+    
     redirect_to orders_path, :notice => "Status alterado com sucesso!"
   end
   
@@ -63,6 +74,12 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id])
     @proposal.status = 2
     @proposal.save
+    UserMailer.proposal_status_changed(@proposal).deliver
+    
     redirect_to proposals_path, :notice => "Status alterado com sucesso!"
+  end
+  
+  def load_contacts
+    @contacts = Contact.all.collect { |c| [c.name, c.id] }
   end
 end

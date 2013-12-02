@@ -1,15 +1,15 @@
 class ContactsController < ApplicationController
-  #access_control do
-  #    allow :administrator, :all
-  #end
+  access_control do
+      allow :administrator, :all
+  end
   
   def index
     if !params[:filter].blank?
-      @contacts = Contact.all(:conditions => ['name LIKE ?', "#{params[:filter]}%" ])
+      @contacts = current_user.contacts.all(:conditions => ['name LIKE ?', "#{params[:filter]}%" ])
     elsif !params[:search].blank?
-      @contacts = Contact.all(:conditions => ['name LIKE ? OR email LIKE ?', "%#{params[:search]}%","%#{params[:search]}%" ])
+      @contacts = current_user.contacts.all(:conditions => ['name LIKE ? OR email LIKE ?', "%#{params[:search]}%","%#{params[:search]}%" ])
     else
-      @contacts = Contact.all
+      @contacts = current_user.contacts.all
     end
   end
   

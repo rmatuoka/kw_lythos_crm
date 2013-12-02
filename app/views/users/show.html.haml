@@ -1,17 +1,26 @@
 %ol.breadcrumb
-  %li=link_to "Home", "javascript:void(0);"
-  %li.active=link_to "Usuários", "javascript:void(0);"
+  %li=link_to "Home", root_path
+  %li.active=link_to "Usuários", users_path
 
-%h1=t ".title", :resource =>  @user.username
+.row
+  .col-xs-9
+    %h1 Usuários
+  .col-xs-3
+    =link_to "+ "+  ::User.model_name.human, new_user_path, :class => "btn btn-default pull-right header-button"
 
-%p=t("activerecord.attributes.user.username")+":"
- 
-%span=@user.username
+- if flash[:notice]
+  .alert.alert-success
+    %b Concluído! 
+    Registro modificado colm
+    %b sucesso!
 
-%p=t("activerecord.attributes.user.email")+":"
-=@user.email
+.col-xs-7.comunicados
+  %h3 Usuário
+  %h2.details= @user.username
 
-%p=t("activerecord.attributes.user.role")+":"
-=@user.role
+  %h3 Email
+  %h2.details=@user.email
 
-%p=link_to "Voltar", users_path(), :class => "btn btn-default"
+  %h3 Tipo de Usuário
+  %h2.details=@user.role
+  <br /><br /><br /><br />

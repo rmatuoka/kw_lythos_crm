@@ -31,16 +31,23 @@
       %th Cliente
       %th Valor
       %th Data
-      %th Representantes
       %th Status
+      %th 
     - @proposals.each do |p|
       - $total_items = 0;
       - p.proposal_items.all.each do |item|
         -$total_items = $total_items + (item.value * item.quantity)
       %tr
         %td=p.id
-        %td=p.contact_id
+        %td=link_to p.contact.name, contact_path(p.contact.id), :class => "red"
         %td=number_to_currency($total_items)
         %td=p.created_at.strftime("%d %m %Y")
-        %td Enviado
-        %td=link_to "Detalhes", edit_proposal_path(p)
+        %td 
+          - case p.status
+            - when 1
+              %span.aguardando-aprovacao Aguardando Aprovação
+            - when 2
+              %span.reprovado Reprovado
+            - when 3
+              %span.aprovado Aprovado
+        %td=link_to "Detalhes", edit_proposal_path(p), :class => "red"

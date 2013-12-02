@@ -1,7 +1,7 @@
 class BulletinsController < ApplicationController
-  #access_control do
-  #    allow :administrator, :all
-  #end
+  access_control do
+      allow :administrator, :all
+  end
   
   def index
     @bulletins = Bulletin.all
@@ -42,5 +42,9 @@ class BulletinsController < ApplicationController
     @bulletins = Bulletin.find(params[:id])
     @bulletins.destroy
     redirect_to bulletins_path, :notice => "Usuário Deletado com sucesso!"
+  end
+  
+  def load_groups
+    
   end
 end

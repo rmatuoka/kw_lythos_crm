@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   #has_many :collaborators, :through => :teams, :source => :collaborator  
   has_and_belongs_to_many :collaborators, :class_name => "User", :join_table => "collaborators_users", :foreign_key => "user_id", :association_foreign_key => "collaborator_id"
   
+  has_many :proposals
+  has_many :contacts
+  
   acts_as_authentic do |c|
     c.login_field = "email"
   end

@@ -1,35 +1,35 @@
-= form_for @user do |f|
-  = f.error_messages
-  %p
-    = f.label :username
-    = f.text_field :username
-  %p
-    = f.label :email
-    = f.text_field :email
-  %p
-    = f.label :password
-    = f.password_field :password
+.row
+  .col-sm-12.top-space  
+    = form_for @user do |f|
+      = f.error_messages
+      %p
+        = f.text_field :username, :class => "form-control", :placeholder => "Nome do Usuário"
+      %p
+        = f.text_field :email, :class => "form-control", :placeholder => "E-mail"
+      %p
+        = f.password_field :password, :class => "form-control", :placeholder => "Senha"
   
-  %p
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
+      %p
+        = f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirme sua senha"
     
-  %h3=t(".permission")
-  =f.radio_button :role, :administrator
-  =t(".administrator") 
-  <br/>
+      %h2=t(".permission")
+      =f.radio_button :role, :administrator
+      =t(".administrator") 
+      <br/>
 
-  =f.radio_button :role, :supervisor 
-  =t(".supervisor") 
-  <br/>
+      =f.radio_button :role, :supervisor 
+      =t(".supervisor") 
+      <br/>
 
-  =f.radio_button :role, :seller 
-  =t(".seller") 
-  <br/> 
-  -if @user.role.to_s == "supervisor" 
-    %h3=t("team_users")
-    -User.all.each do |user|
-      = check_box_tag 'user[collaborator_ids][]', user.id, @user.collaborators.include?(user), :class=> "input_radio" if user.id != @user.id
-      = user.username  if user.id != @user.id 
-  =f.submit nil, :class => "btn btn-default"
-  =link_to "Voltar", users_path(), :class => "btn btn-default"
+      =f.radio_button :role, :seller 
+      =t(".seller") 
+      <br/><br/> 
+      -if @user.role.to_s == "supervisor" 
+        %h2=t("team_users")
+        -User.all.each do |user|
+          = check_box_tag 'user[collaborator_ids][]', user.id, @user.collaborators.include?(user), :class=> "input_radio" if user.id != @user.id
+          = user.username  if user.id != @user.id 
+        <br /><br />
+      =f.submit nil, :class => "btn btn-default"
+  
+  //=link_to "Voltar", users_path(), :class => "btn btn-default"

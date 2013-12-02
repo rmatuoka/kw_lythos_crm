@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131129134846) do
+ActiveRecord::Schema.define(:version => 20131202134030) do
 
   create_table "bulletins", :force => true do |t|
     t.string   "title"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20131129134846) do
     t.text     "obs"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "libraries", :force => true do |t|
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20131129134846) do
     t.integer  "status",      :default => 1
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.integer  "user_id"
   end
 
   create_table "roles", :force => true do |t|

@@ -1,0 +1,12 @@
+.row
+  .col-sm-12.top-space
+    = form_for @user_session do |f|
+      = f.error_messages
+      %p
+        = f.text_field :email, :placeholder => "E-mail", :class => "form-control"
+      %p
+        = f.password_field :password, :placeholder => "Senha", :class => "form-control"
+      %p
+      = f.submit "Entrar", :class => "btn btn-default"
+      
+      <br /><br />
