@@ -3,6 +3,8 @@ class LibrariesController < ApplicationController
   
   access_control do
       allow :administrator, :all
+      allow :supervisor, :all
+      allow :seller, :all
   end
   
   def index

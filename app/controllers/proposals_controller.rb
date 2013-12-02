@@ -3,10 +3,16 @@ class ProposalsController < ApplicationController
   
   access_control do
       allow :administrator, :all
+      allow :supervisor, :all
+      allow :seller, :all
   end
   
   def index
-    @proposals = Proposal.all(:conditions => ['status < 4'])
+    if current_user.has_role?(:administrator)
+      @proposals = Proposal.all(:conditions => ['status < 4'])
+    else
+      @proposals = current_user.proposals.all
+    end
   end
   
   def new
