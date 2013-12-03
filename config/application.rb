@@ -69,7 +69,9 @@ module KwLythosCrm
       :enable_starttls_auto => true
     }
 
-    ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+    config.action_mailer.default_url_options = {
+      :host => "lythos.korewa.com.br"
+    }
     
   end
 end
