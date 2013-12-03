@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   helper :application
-  default :from => "Lythos <site@nesporte.com.br>"
+  default :from => "Lythos <log@korewa.com.br>"
 
   def proposal_send(proposal)
     @proposal = proposal

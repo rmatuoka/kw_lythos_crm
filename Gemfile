@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2', '0.3.11'
 gem "nifty-generators", :group => :development
-gem 'mail'
+gem 'mail', '2.5.3'
 #gem "will_paginate"
 #gem "browser"
 gem 'tinymce-rails', '3.5.6'
