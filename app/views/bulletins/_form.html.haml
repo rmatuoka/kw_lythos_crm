@@ -24,6 +24,6 @@
           %h4.list-group-item-heading 
             = b.title
             %span.list-group-date=b.created_at.strftime("%d.%m.%Y")
-          %p.list-group-item-text
+          %p.list-group-item-text{:id => b.id}
             =truncate(b.message)
             //= b.message

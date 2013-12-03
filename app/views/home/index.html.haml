@@ -1,3 +1,9 @@
+-content_for :scripts do
+  :javascript
+    $(".list-group-item-text").click(function() {
+      window.location.href = '/bulletins/' + $(this).attr("id");
+    });
+
 %ol.breadcrumb
   %li=link_to "Home", "javascript:void(0);"
   %li.active=link_to "Teste", "javascript:void(0);"
@@ -19,7 +25,7 @@
     - @proposals.each do |p|
       %tr
         %td=p.id
-        %td=p.contact.name
+        %td=link_to p.contact.name, order_path(p), :class => "red"
         %td=p.user.username
         %td=p.created_at.strftime("%d.%m.%Y")
 
@@ -33,7 +39,7 @@
         %h4.list-group-item-heading 
           = b.title
           %span.list-group-date=b.created_at.strftime("%d.%m.%Y")
-        %p.list-group-item-text
+        %p.list-group-item-text{:id => b.id}
           =truncate(b.message)
 
 
