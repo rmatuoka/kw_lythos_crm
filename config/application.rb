@@ -59,19 +59,5 @@ module KwLythosCrm
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
-    ActionMailer::Base.delivery_method = :smtp
-    ActionMailer::Base.smtp_settings = {
-      :address => "pod51028.outlook.com",
-      :port => 587,
-      :user_name => "log@korewa.com.br",
-      :password => "Du3$GLo1511",
-      :authentication => :login,
-      :enable_starttls_auto => true
-    }
-
-    config.action_mailer.default_url_options = {
-      :host => "lythos.korewa.com.br"
-    }
-    
   end
 end
