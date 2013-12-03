@@ -12,7 +12,7 @@ gem 'mail', '2.5.3'
 #gem "browser"
 gem 'tinymce-rails', '3.5.6'
 #gem 'paperclip'
-gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
+gem "authlogic"
 gem "rails3-generators"
 gem 'acl9'
 #gem 'paperclip'
