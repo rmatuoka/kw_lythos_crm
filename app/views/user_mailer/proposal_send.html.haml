@@ -1,5 +1,5 @@
 !!!
-%html{:lang => "en", "xml=>lang" => "en", :xmlns => "http=>//www.w3.org/1999/xhtml"}
+%html{:lang => "en", :xmlns => "http=>//www.w3.org/1999/xhtml"}
   %head
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
     %title
@@ -12,13 +12,13 @@
   %body
     %table{:border => "0", :cellpadding=> "0", :cellspacing=> "0", :width=> "600"}
       %tr
-        %td{:align=> "right", :height=> "28", :style=> "border-bottom=>2px solid #333;"}
-          = image_tag("http://www.putzmeister.com.br/assets/template_pdf/logo.png")
+        %td{:align=> "right", :height=> "28", :style=> "border-bottom:2px solid #333333; background-color:#272727;"}
+          = image_tag("http://lythos.korewa.com.br/assets/template/logo-89574db7feb76eb409c872d914e69d55.jpg", :vspace => "5", :hspace => "5")
       %tr
         %td{:align=> "left"}
           %br/
           %br/
-          %font{:face=> "Tahoma", :style=> "font-size=>12px;"}
+          %font{:face=> "Tahoma", :style=> "font-size:12px;"}
             Olá,
             =@proposal.contact.name
             %br/
@@ -26,9 +26,10 @@
             Você recebeu um novo orçamento!
             %br/
             %br/
-            Produtos:
+            %b
+              Produtos:
             %br/
-          %table.table.table-condensed
+          %table{:width => "100%"}
             - @proposal.proposal_items.each do |p|
               %tr
                 %td=p.quantity
@@ -38,22 +39,25 @@
           
           %br/
           %br/      
-          %font{:face=> "Tahoma", :style=> "font-size=>12px;"}      
+          %font{:face=> "Tahoma", :style=> "font-size:12px;"}      
             Endereço de Entrega:
+            %br/
             ="#{@proposal.address}, #{@proposal.number} - #{@proposal.city} - #{@proposal.state}"
+            %br/
+            %br/
             ="#{@proposal.postal_code}"
             
           %br/
           %br/
           %br/
       %tr
-        %td{:style => "border-top=>2px solid #333;"}
+        %td{:style => "border-top:2px solid #333;"}
           %br/
           %table{:border=> "0", :cellpadding=> "0", :cellspacing=> "0", :width=> "100%"}
             %tr
               %td{:align=> "center", :width=> "30%"}
-                %font{:face=> "Tahoma", :style=> "font-size=>12px;"} Lythos.
+                %font{:face=> "Tahoma", :style=> "font-size:12px;"} Lythos.
               %td{:align=> "center", :width=> "30%"}
-                %font{:face=> "Tahoma", :style=> "font-size=>12px;"} www.lythos.com.br
+                %font{:face=> "Tahoma", :style=> "font-size:12px;"} www.lythos.com.br
               %td{:align=> "center", :width=> "30%"}
-                %font{:face=> "Tahoma", :style=> "font-size=>12px;"} contato@lythos.com.br
+                %font{:face=> "Tahoma", :style=> "font-size:12px;"} contato@lythos.com.br
