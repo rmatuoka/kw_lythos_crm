@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   
   has_many :proposals
   has_many :contacts
+  has_many :goals_sellers
   
   acts_as_authentic do |c|
     c.login_field = "email"

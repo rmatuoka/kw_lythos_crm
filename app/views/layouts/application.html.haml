@@ -33,7 +33,7 @@
           - if current_user.has_role?(:administrator)  
             %h6 Administração
             %ul
-              %li=link_to("Metas", "#", :class => "metas")
+              %li=link_to("Metas", goals_path, :class => "metas")
               %li=link_to("Usuários", users_path, :class => "usuarios")
               %li=link_to("Comunicados", new_bulletin_path, :class => "comunicados")
               %li=link_to("Regiões", "#", :class => "regioes")

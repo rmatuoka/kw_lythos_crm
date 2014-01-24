@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  goal_id: 1
+  user_id: 1
+  value: 9.99
+  obtained_value: 9.99
+
+two:
+  goal_id: 1
+  user_id: 1
+  value: 9.99
+  obtained_value: 9.99

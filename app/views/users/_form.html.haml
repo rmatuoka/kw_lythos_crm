@@ -27,8 +27,9 @@
       -if @user.role.to_s == "supervisor" 
         %h2=t("team_users")
         -User.all.each do |user|
-          = check_box_tag 'user[collaborator_ids][]', user.id, @user.collaborators.include?(user), :class=> "input_radio" if user.id != @user.id
-          = user.username  if user.id != @user.id 
+          - if (user.id != @user.id && user.role.to_s == "seller" )
+            = check_box_tag 'user[collaborator_ids][]', user.id, @user.collaborators.include?(user), :class=> "input_radio"
+            = user.username
         <br /><br />
       =f.submit nil, :class => "btn btn-default"
   

@@ -1,0 +1,33 @@
+%ol.breadcrumb
+  %li=link_to "Home", root_path
+  %li.active=link_to "Metas", goals_path
+
+.row
+  .col-xs-9
+    %h1 Meta
+    Cod:
+    =@goal.id   
+    %br  
+    Inicio:
+    =@goal.start
+    %br  
+    Fim:  
+    =@goal.end
+    %br 
+    Valor:
+    =@goal.value 
+    
+    %h2 Equipes    
+    
+    -@goal_sellers.each do |goal_seller|
+      %h3 
+      =goal_seller.goal_id
+      %br
+      =goal_seller.user.username
+      %br
+      =goal_seller.obtained_value
+      %br
+      =goal_seller.value 
+      %br
+      %br
+      

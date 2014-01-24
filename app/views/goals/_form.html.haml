@@ -1,0 +1,21 @@
+.row
+  .col-sm-12.top-space
+    = form_for @goal do |f|    
+      //%p.form-msg-danger Este campo está incorreto:    
+      Valor
+      = f.text_field :value
+      <br /><br />
+      Inicio  
+      = f.date_select(:start,:start_year => 2013, :class => "form-control" )
+      <br /><br />
+      Fim
+      = f.date_select(:end,:start_year => 2013, :class => "form-control" ) 
+      <br />    
+      
+      
+      
+      -@sellers.each do |seller|
+        =seller.username  
+        =text_field_tag "goal[sellers][#{seller.id}]"
+        <br />          
+      = submit_tag "Salvar", :class => "btn btn-default pull-right"  

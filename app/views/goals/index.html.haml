@@ -1,0 +1,32 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Metas", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Metas
+  .col-xs-3
+    =link_to "+ Metas", new_goal_path, :class => "btn btn-default pull-right header-button"    
+
+- if flash[:notice]
+  .alert.alert-success
+    %b Concluído! 
+    Registro excluido com
+    %b sucesso!
+    
+
+.users  
+  %table.table.table-condensed
+    %tr
+      %th Meta ID
+      %th Valor
+      %th Inicio
+      %th Fim
+      %th    
+    -@goals.each do |goal|  
+      %tr
+        %td=goal.id
+        %td=number_to_currency(goal.value)
+        %td=I18n.l(goal.start)
+        %td=I18n.l(goal.end)
+        %td=link_to "Detalhes", goal_path(goal), :class => "red" 

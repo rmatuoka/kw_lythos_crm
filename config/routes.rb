@@ -1,5 +1,7 @@
 KwLythosCrm::Application.routes.draw do
   
+  resources :goals
+
   resources :user_sessions
   resources(:users) do
     member do

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  value: 9.99
+  start: 2013-12-04
+  end: 2013-12-04
+
+two:
+  value: 9.99
+  start: 2013-12-04
+  end: 2013-12-04
