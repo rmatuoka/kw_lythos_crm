@@ -27,7 +27,7 @@
 .users  
   %table.table.table-condensed
     %tr
-      %th
+      %th ID
       %th Cliente
       %th Valor
       %th Data
@@ -41,7 +41,7 @@
         %td=p.id
         %td=link_to p.contact.name, contact_path(p.contact.id), :class => "red"
         %td=number_to_currency($total_items)
-        %td=p.created_at.strftime("%d %m %Y")
+        %td=p.created_at.strftime("%d/%m/%Y")
         %td 
           - case p.status
             - when 1

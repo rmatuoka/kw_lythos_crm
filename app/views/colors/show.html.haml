@@ -1,0 +1,42 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Contatos", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Cor
+  .col-xs-3
+    =link_to "+ Cor", new_color_path, :class => "btn btn-default pull-right header-button"
+
+- if flash[:notice]
+  .alert.alert-success
+    %b Concluído! 
+    Registro criado/editado com
+    %b sucesso!
+
+
+.row.top-space
+  .col-sm-9
+    %h2=@color.name
+
+
+
+
+
+
+
+
+
+
+- title "Color"
+
+%p
+  %strong Name:
+  = @color.name
+
+%p
+  = link_to "Edit", edit_color_path(@color)
+  |
+  = link_to "Destroy", @color, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", colors_path

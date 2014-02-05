@@ -1,0 +1,14 @@
+%ol.breadcrumb
+  %li=link_to "Home", root_path
+  %li=link_to "Cores", colors_path
+
+.row
+  .col-xs-9
+    %h1 Nova Cor 
+
+- if flash[:error]
+  .alert.alert-danger
+    %b Ops!
+    Está faltando alguma coisa
+
+= render :partial => "form"

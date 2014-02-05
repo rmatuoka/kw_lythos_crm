@@ -1,0 +1,27 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Cores", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Acabamentos
+  .col-xs-3
+    =link_to "+ Acabamento", new_finish_path, :class => "btn btn-default pull-right header-button"    
+
+- if flash[:notice]
+  .alert.alert-success
+    %b= flash[:notice]
+    
+
+.users  
+  %table.table.table-condensed
+    %tr
+      %th Nome
+      %th     
+    -@finishes.each do |finish|  
+      %tr
+        %td= finish.name
+        %td
+          = link_to 'Editar', edit_finish_path(finish), :class => "btn btn-white"
+          = link_to 'Excluir', finish_path(finish), :confirm => 'Esta ação não poderá ser desfeita?', :method => :delete, :class => "btn btn-white"
+

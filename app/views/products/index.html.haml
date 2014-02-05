@@ -1,0 +1,33 @@
+%ol.breadcrumb
+  %li=link_to "Home", root_path()
+  %li.active=link_to "Produtos", products_path()
+
+.row
+  .col-xs-9
+    %h1 Produtos
+  .col-xs-3
+    =link_to "+ Produto", new_product_path, :class => "btn btn-default pull-right header-button"    
+
+- if flash[:notice]
+  .alert.alert-success
+    %b= flash[:notice]
+    
+
+.users  
+  %table.table.table-condensed
+    %tr
+      %th Nome
+      %th Cor
+      %th Acabamento
+      %th Valor       
+      %th          
+    -@products.each do |product|  
+      %tr
+        %td= product.name
+        %td= product.color.name
+        %td= product.finish.name  
+        %td= number_to_currency(product.value)         
+        %td
+          = link_to 'Editar', edit_product_path(product), :class => "btn btn-white"
+          = link_to 'Excluir', product_path(product), :confirm => 'Esta ação não poderá ser desfeita?', :method => :delete, :class => "btn btn-white"
+          

@@ -1,0 +1,52 @@
+.container{:style => "width:850px;"}
+  
+      
+  .main_content{:style => "margin-top:40px;"}
+    À <br />
+    =@proposal.contact.name 
+    <br />
+    %b CNPJ:
+    =@proposal.contact.cpf_cnpj
+    <br />
+    %b E-mail: 
+    =@proposal.email
+    <br />
+    %b Telefone: 
+    =@proposal.contact.phone  
+    <br />
+    %b Celular: 
+    =@proposal.contact.cellphone
+    %br
+    %br 
+    %table.table{:style => "width:850px;"}  
+      %thead
+        %th Quantidade
+        %th Produto
+        %th Valor Unitário
+        %th Valor Total
+      %tbody
+        -@Total = 0
+        - @proposal.proposal_items.each do |p| 
+          -@Total = @Total + (p.quantity * p.value)
+          %tr
+            %td{:align => :center}=p.quantity
+            %td=p.product
+            %td{:align => :right}=number_to_currency(p.value)
+            %td{:align => :right}=number_to_currency(p.quantity * p.value)
+        
+        %tr{:style => "height:50px; font-size: 16px;"}
+          %td{:colspan => 3,:align => :right}
+            %b Total
+          %td{:align => :right}
+            %b 
+              =number_to_currency(@Total)
+              
+    %br
+    %b Endereço: 
+    =@proposal.address + ", " + @proposal.number    
+    %br
+    %b Cidade: 
+    =@proposal.city + " -" + @proposal.state  
+    %br
+    %b CEP: 
+    =@proposal.postal_code

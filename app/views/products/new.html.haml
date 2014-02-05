@@ -1,0 +1,14 @@
+%ol.breadcrumb
+  %li=link_to "Home", root_path
+  %li=link_to "Produtos", products_path
+
+.row
+  .col-xs-9
+    %h1 Novo Prduto 
+
+- if flash[:error]
+  .alert.alert-danger
+    %b Ops!
+    Está faltando alguma coisa
+
+= render :partial => "form"

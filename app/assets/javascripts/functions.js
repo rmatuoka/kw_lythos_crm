@@ -22,29 +22,48 @@ function resize_layout()
 	//$(".main-box").css("height", "auto");
 	//$(".main-box").css("min-height", height_content - size_of_footer);
 }
+function Excluir(){
+    var par = $(this).parent().parent(); //tr
+    par.remove();
+}
 
-
-function add_item_to_proposal(qtde, name, value)
-{
+function add_item_to_proposal(qtde, name, value, show_tabela)
+{ 
+  alert(show_tabela); 
   if(qtde != "" && qtde > "" && name != ""  && value != "" && value > 0 )
-  {
-     
-    table += "<table class=\"table table-condensed\">"
-    table += "<tbody>"
-    table += "<tr>"
-    table += "  <td>"+ qtde +"</td>"
-    table += "  <td>"+ name +"</td>"
-    table += "  <td> R$"+ value +"</td>"
-    table += "  <td>"+ value * qtde+"</td>"
-    table += "</tr>"
-    table += "</tbody></table>"
-    
-    table += "<input type='hidden' name='proposals[items][item_"+ total_items +"][quantity]' value='"+ qtde +"' />"
-    table += "<input type='hidden' name='proposals[items][item_"+ total_items +"][product]' value='"+ name +"' />"
-    table += "<input type='hidden' name='proposals[items][item_"+ total_items +"][value]' value='"+ value +"' />"
-
-    $("#items").html(table);
-  
+  {	
+	table= "";
+    if (!show_tabela){ 
+	    table += "<table class=\"table table-condensed\" id=\"table_itens_prod\">"
+	    table += "	<tbody>"
+	    table += "		<tr>"
+	    table += "  		<td>"+ qtde +"</td>"
+	    table += "  		<td>"+ name +"</td>"
+	    table += "  		<td> R$"+ value +"</td>"
+	    table += "  		<td>"+ value * qtde+"</td>"
+	    table += "  		<td><a class=\"btn btn-default delet-item\">-</a></td>"		
+	    table += "			<input type='hidden' name='proposals[items][item_"+ total_items +"][quantity]' value='"+ qtde +"' />"
+	    table += "			<input type='hidden' name='proposals[items][item_"+ total_items +"][product]' value='"+ name +"' />"
+	    table += "			<input type='hidden' name='proposals[items][item_"+ total_items +"][value]' value='"+ value +"' />"
+	    table += "		</tr>"
+	    table += "	</tbody>"
+		table += "</table>"
+	    $("#items").html(table);
+		$(".delet-item").bind("click", Excluir); 
+	}else{
+	    table += "		<tr>"
+	    table += "  		<td>"+ qtde +"</td>"
+	    table += "  		<td>"+ name +"</td>"
+	    table += "  		<td> R$"+ value +"</td>"
+	    table += "  		<td>"+ value * qtde+"</td>"
+	    table += "  		<td><a class=\"btn btn-default delet-item\">-</a></td>"	 	
+	    table += "			<input type='hidden' name='proposals[items][item_"+ total_items +"][quantity]' value='"+ qtde +"' />"
+	    table += "			<input type='hidden' name='proposals[items][item_"+ total_items +"][product]' value='"+ name +"' />"
+	    table += "			<input type='hidden' name='proposals[items][item_"+ total_items +"][value]' value='"+ value +"' />"
+	    table += "		</tr>"
+		$("#table_itens_prod tbody").append(table);
+		$(".delet-item").bind("click", Excluir);   		
+	}  
     total_items ++;
   }
   else

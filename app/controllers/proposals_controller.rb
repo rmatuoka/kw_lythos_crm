@@ -17,6 +17,7 @@ class ProposalsController < ApplicationController
   
   def new
     @proposal = Proposal.new
+    @products = Product.all(:order => :name).collect { |p| [p.name+" / "+p.color.name+" / "+p.finish.name, p.id]}
   end
 
   def create
@@ -49,7 +50,46 @@ class ProposalsController < ApplicationController
   end
   
   def show
-    @proposal = Proposal.find(params[:id])
+    
+    @proposal = Proposal.find(params[:id]) 
+    @proposal_itens = @proposal.proposal_items
+
+    @id_comercial = "Proposta número " + @proposal.id.to_s + " - " + @proposal.contact.name
+
+    respond_to do |format|
+      format.html
+      format.pdf do          
+        d = DateTime.now.strftime("%d-%m-%Y") 
+        @Data = "Atibaia/SP, "+ I18n.l(DateTime.now, :format => :long_date)
+        render  :pdf          => "Orcamento - Lythos - #{@id_comercial} - #{d}",
+                :layout       => "/layouts/proposal.html.haml",
+                :template     => "/proposals/generate_pdf.html.haml",
+                :show_as_html => params[:debug].present?,
+                :margin       => {:top                => 20,                     # default 10 (mm)
+                                  :bottom             => 20,
+                                  :left               => 15,
+                                  :right              => 15},                  
+                :page_size => 'A4',
+
+                :header => {
+                            :right => '[page] of [topage]',
+                            :html => { 
+                                      :template => '/proposals/_header_pdf.html.haml',  
+                                      },
+                            },
+
+                :footer => {
+                            :html => { 
+                                      :template => '/proposals/_footer_pdf.html.haml',  
+                                      },
+                            }             
+
+        end
+    end   
+    
+    
+    
+    
   end
   
   def update

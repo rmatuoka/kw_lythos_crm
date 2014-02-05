@@ -1,3 +1,29 @@
+-content_for :scripts do
+  = stylesheet_link_tag "chosen.min.css"  
+  = javascript_include_tag "chosen.jquery.min.js"   
+  :javascript
+    $('.chosen-select').chosen({no_results_text: "Nenhum resultado para",width: "50%"});
+    $(document).ready(function() {
+      $('#select_fake').change(function() {
+        $.ajax({
+          url: "#{selected_products_path}",
+          data: {
+            id : $('#select_fake').val()
+          },
+          dataType: "script"
+        });
+      });
+      
+      
+      $('input').keypress(function (e) {
+        var code = null;
+        code = (e.keyCode ? e.keyCode : e.which);                
+        return (code == 13) ? false : true;
+      }); 
+     
+      
+    }); 
+
 .row
   .col-sm-12.top-space
     = form_for @proposal do |f|    
@@ -15,11 +41,12 @@
         %h2 Selecione os produtos
         .col-xs-12.search
           .col-xs-7
-            %input.form-control.produto{:placeholder => "Produto"}
+            =select("select", "fake", @products,{:include_blank=>true}, {:class => "chosen-select", :"data-placeholder"=>"Selecione um Produto"} )
+            %input.form-control.produto.hide#cod_prod{:placeholder => "Produto"}
           .col-xs-2
-            %input.form-control.preco{:placeholder => "Preço Un."}
+            %input.form-control.preco#preco_prod{:placeholder => "Preço Un.", :readonly=>true}
           .col-xs-2
-            %input.form-control.qtde{:placeholder => "Qtde."}
+            %input.form-control.qtde#qtde_prod{:placeholder => "Qtde."}
           .col-xs-1
             %a.btn.btn-default.submit-item +
         
@@ -38,7 +65,7 @@
               %td=number_to_currency(p.quantity * p.value)
             
       .clearfix
-      
+      %div#ShowSelects
       %h2 Endereço de Entrega
       = f.text_field :address, :class => "form-control", :placeholder => "Endereço"
       <br />
@@ -51,6 +78,7 @@
       = f.text_field :postal_code, :class => "form-control", :placeholder => "CEP"
       <br />
       - if @edit
+        = link_to "Ver PDF", proposal_path(@proposal,:format => :pdf), :class => "pdf btn btn-white pull-right", :target => "_blank"    
         = link_to "Reprovar", denial_proposal_path(@proposal), :class => "reprovado btn btn-white pull-right"
         = link_to "Aprovar", approve_proposal_path(@proposal), :class => "aprovado btn btn-white pull-right"
         <br />

@@ -1,0 +1,12 @@
+- title "Admin/Color"
+
+%p
+  %strong Name:
+  = @color.name
+
+%p
+  = link_to "Edit", edit_admin_color_path(@color)
+  |
+  = link_to "Destroy", [:admin, @color], :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", admin_colors_path

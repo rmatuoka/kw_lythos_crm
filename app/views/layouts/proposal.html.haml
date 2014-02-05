@@ -1,0 +1,31 @@
+!!! 5
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7 ] <html class=\"ie6\" lang=\"en\">
+/[if IE 7 ]    <html class=\"ie7\" lang=\"en\">
+/[if IE 8 ]    <html class=\"ie8\" lang=\"en\">
+/[if IE 9 ]    <html class=\"ie9\" lang=\"en\">
+/[if (gt IE 9)|!(IE)] <!--> <html lang=\"en\">
+
+%head
+  %meta{ :charset => "utf-8" }
+  %title 
+  :css
+    div, p, ul, li
+    {
+      font-family:Tahoma;
+      font-size:12px;
+    }
+    
+  :javascript
+    function number_pages() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+              var y = document.getElementsByClassName(x[i]);
+              for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+            }
+          }
+%body{:onload => "number_pages();"}
+  = yield

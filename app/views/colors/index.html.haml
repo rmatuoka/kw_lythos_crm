@@ -1,0 +1,26 @@
+%ol.breadcrumb
+  %li=link_to "Home", "javascript:void(0);"
+  %li.active=link_to "Cores", "javascript:void(0);"
+
+.row
+  .col-xs-9
+    %h1 Cores
+  .col-xs-3
+    =link_to "+ Cor", new_color_path, :class => "btn btn-default pull-right header-button"    
+
+- if flash[:notice]
+  .alert.alert-success
+    %b= flash[:notice]
+    
+
+.users  
+  %table.table.table-condensed
+    %tr
+      %th Nome
+      %th     
+    -@colors.each do |color|  
+      %tr
+        %td= color.name
+        %td
+          = link_to 'Editar', edit_color_path(color), :class => "btn btn-white"
+          = link_to 'Excluir', color_path(color), :confirm => 'Esta ação não poderá ser desfeita?', :method => :delete, :class => "btn btn-white"

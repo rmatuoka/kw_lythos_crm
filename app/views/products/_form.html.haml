@@ -1,0 +1,32 @@
+-content_for :scripts do
+  = stylesheet_link_tag "bootstrap-switch.min"
+  = stylesheet_link_tag "chosen.min.css"  
+  = javascript_include_tag "bootstrap-switch.min"
+  =# javascript_include_tag "jquery.price_format.2.0.min.js"  
+  =# javascript_include_tag "jquery.maskMoney.min.js"
+  = javascript_include_tag "chosen.jquery.min.js"   
+  :javascript
+    $('#product_active').bootstrapSwitch();
+    //$('#product_value').priceFormat({prefix: 'R$ ',centsSeparator: '.',thousandsSeparator: '',clearPrefix: true});
+    $('.chosen-select').chosen({no_results_text: "Nenhum resultado para",width: "50%"});
+    //$('#product_value').maskMoney({decimal:"."});
+ 
+.row
+  .col-sm-12.top-space    
+    = form_for @product do |f|
+      = f.error_messages
+      %p
+        = f.text_field :name, :class => "form-control", :placeholder => "Nome" 
+      %p
+        = f.text_field :value, :class => "form-control", :placeholder => "0.00" 
+      %p
+        = f.select :color_id, @colors,{:include_blank=>true}, {:class => "chosen-select", :"data-placeholder"=>"Selecione a Cor"}
+      %p
+        = f.select :finish_id, @finishes,{:include_blank=>true}, {:class => "chosen-select", :"data-placeholder"=>"Selecione o Acabamento"}
+    
+      %p
+        = f.check_box :active, :class=>"switch-large", :"data-text-label"=>"Exibir"
+      %p
+        = submit_tag "Salvar", :class => "btn btn-default pull-right"   
+
+    

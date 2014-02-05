@@ -1,0 +1,8 @@
+.row
+  .col-sm-12.top-space
+    = form_for @finish do |f|
+      = f.error_messages
+      %p
+        = f.text_field :name, :class => "form-control", :placeholder => "Nome" 
+      %br
+      = submit_tag "Salvar", :class => "btn btn-default pull-right"    

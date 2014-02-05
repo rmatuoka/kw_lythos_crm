@@ -27,7 +27,7 @@
         %td=p.id
         %td=link_to p.contact.name, order_path(p), :class => "red"
         %td=p.user.username
-        %td=p.created_at.strftime("%d.%m.%Y")
+        %td=p.created_at.strftime("%d/%m/%Y")
 
   = link_to "Veja a lista completa", orders_path, :class => "pull-right more-link"
 .col-xs-7.comunicados

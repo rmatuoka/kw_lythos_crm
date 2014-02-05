@@ -8,7 +8,11 @@
       var qtde = $(".qtde").val();
       var name = $(".produto").val();
       var value = $(".preco").val();
-      add_item_to_proposal(qtde, name, value);
+      var tabela = $("#table_itens_prod").length > 0 ? true : false;
+      add_item_to_proposal(qtde, name, value, tabela);
+      $(".qtde").val("");
+      $(".produto").val("");
+      $(".preco").val("");
     });
 
 %ol.breadcrumb

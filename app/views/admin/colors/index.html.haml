@@ -1,0 +1,13 @@
+- title "Admin/Colors"
+
+%table
+  %tr
+    %th Name
+  - for color in @colors
+    %tr
+      %td= color.name
+      %td= link_to 'Show', [:admin, color]
+      %td= link_to 'Edit', edit_admin_color_path(color)
+      %td= link_to 'Destroy', [:admin, color], :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Admin/Color", new_admin_color_path

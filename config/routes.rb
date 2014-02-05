@@ -1,5 +1,15 @@
 KwLythosCrm::Application.routes.draw do
-  
+
+  resources(:products){
+    collection do 
+      get 'selected'
+    end
+  }
+
+  resources :finishes
+
+  resources :colors
+
   resources :goals
 
   resources :user_sessions
@@ -17,7 +27,7 @@ KwLythosCrm::Application.routes.draw do
   }
   resources :bulletins
   resources :zones
-  resources(:proposals){
+  resources(:proposals){ 
     member do
       get 'approve'
       get 'denial'

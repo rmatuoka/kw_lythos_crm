@@ -1,0 +1,3 @@
+$("#cod_prod").val("#{escape_javascript(@product.name+" / "+ @product.color.name+" / "+ @product.finish.name)}");  
+$("#preco_prod").val("#{escape_javascript(@product.value.to_s)}");
+$("#qtde_prod").focus();

@@ -3,17 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .aprovado
 {
-  color:Green;
+  color:#1FC161;  /*Verde*/
 }
 
 .reprovado
 {
-  color:Red;
+  color:#F54000; /*Vermelho*/ 
+} 
+
+.pdf
+{
+  color:#F6951E; /*Laranja*/ 
 }
 
 .aguardando-aprovacao
 {
-  color:blue;
+  color:#F6951E; /*Laranja*/
 }
 
 .search
