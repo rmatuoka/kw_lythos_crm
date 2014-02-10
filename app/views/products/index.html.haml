@@ -19,14 +19,16 @@
       %th Nome
       %th Cor
       %th Acabamento
-      %th Valor       
+      %th Valor
+      %th Exibir?             
       %th          
     -@products.each do |product|  
       %tr
         %td= product.name
         %td= product.color.name
         %td= product.finish.name  
-        %td= number_to_currency(product.value)         
+        %td= number_to_currency(product.value)       
+        %td= boolean_translate(product.active)  
         %td
           = link_to 'Editar', edit_product_path(product), :class => "btn btn-white"
           = link_to 'Excluir', product_path(product), :confirm => 'Esta ação não poderá ser desfeita?', :method => :delete, :class => "btn btn-white"
