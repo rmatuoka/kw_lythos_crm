@@ -3,7 +3,25 @@
   = javascript_include_tag "chosen.jquery.min.js"   
  
   :javascript
+    $('.chosen-select').chosen({no_results_text: "Nenhum resultado para",width: "50%"});
     $(document).ready(function() {
+      $('#select_fake').change(function() {
+        $.ajax({
+          url: "#{selected_products_path}",
+          data: {
+            id : $('#select_fake').val()
+          },
+          dataType: "script"
+        });
+      });
+      
+      
+      $('input').keypress(function (e) {
+        var code = null;
+        code = (e.keyCode ? e.keyCode : e.which);                
+        return (code == 13) ? false : true;
+      }); 
+     
       $(".various").fancybox({
         fitToView	: true,
         autoSize	: true,
@@ -13,6 +31,7 @@
         type		: 'iframe',
       });
     });
+
 .row
   .col-sm-12.top-space
     = form_for @proposal do |f|    
@@ -29,16 +48,16 @@
       - if !@edit
         %h2 Selecione os produtos
         .col-xs-12.search
-          .col-xs-7
+          .col-xs-6
             =select("select", "fake", @products,{:include_blank=>true}, {:class => "chosen-select", :"data-placeholder"=>"Selecione um Produto"} )
             %input.form-control.produto.hide#cod_prod{:placeholder => "Produto"}
           .col-xs-2
             %input.form-control.preco#preco_prod{:placeholder => "Preço Un.", :readonly=>true}
           .col-xs-2
             %input.form-control.qtde#qtde_prod{:placeholder => "Qtde."}
-          .col-xs-1
+          .col-xs-2
             %a.btn.btn-default.submit-item +
-            =link_to "Calculadora", calculator_proposals_path, :class => "various fancybox.iframe btn btn-default"
+            =link_to image_tag("template/ico_calculator_small.png"), calculator_proposals_path, :class => "various fancybox.iframe btn btn-default"
           <br /><br />
         
           #items
