@@ -3,15 +3,24 @@
   %li=link_to "Usuários", users_path    
   %li.active=link_to t("team_users") + " - " + @user.username, "javascript:void(0);"   
 
+.row
+  .col-xs-9.a
+    %h1="Equipe de vendas de #{@user.username}"
+  
 -if @teams.count > 0
-  %table.col-xs-12
+  %table.col-xs-12.table.table-condensed
     %tr
       %th=t("activerecord.attributes.user.username")
       %th=t("activerecord.attributes.user.email")   
     - for team in @teams
       %tr
         %td= team.username
-        %td= team.email      
+        %td= team.email
 
 -else
   %h3 Nenhuma equipe encontrada!
+
+
+%p
+  =link_to "Gerenciar Equipe", team_management_user_path(@user), :class => "btn btn-default"
+  =link_to "Cancelar", "javascript:history.go(-1);", :class => "btn btn-white"

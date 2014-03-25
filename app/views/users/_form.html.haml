@@ -1,5 +1,5 @@
 .row
-  .col-sm-12.top-space  
+  .col-sm-12.top-space.a  
     = form_for @user do |f|
       = f.error_messages
       %p
@@ -12,25 +12,36 @@
       %p
         = f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirme sua senha"
     
-      %h2=t(".permission")
-      =f.radio_button :role, :administrator
-      =t(".administrator") 
-      <br/>
+      %p
+        Sua foto:
+        =f.file_field :avatar, :class => "form-control"
+        
+      %p
+        Logo da sua empresa:
+        =f.file_field :company_logo, :class => "form-control"
+        
+      - if @user.has_role?(:administrator)
+        %h2=t(".permission")
+        =f.radio_button :role, :administrator
+        =t(".administrator") 
+        <br/>
 
-      =f.radio_button :role, :supervisor 
-      =t(".supervisor") 
-      <br/>
+        =f.radio_button :role, :supervisor 
+        =t(".supervisor") 
+        <br/>
 
-      =f.radio_button :role, :seller 
-      =t(".seller") 
-      <br/><br/> 
-      -if @user.role.to_s == "supervisor" 
+        =f.radio_button :role, :seller 
+        =t(".seller") 
+        <br/><br/> 
+      
+      -if @user.role.to_s == "supervisor"
         %h2=t("team_users")
         -User.all.each do |user|
           - if (user.id != @user.id && user.role.to_s == "seller" )
             = check_box_tag 'user[collaborator_ids][]', user.id, @user.collaborators.include?(user), :class=> "input_radio"
             = user.username
+            <br />
         <br /><br />
+      
       =f.submit nil, :class => "btn btn-default"
   
-  //=link_to "Voltar", users_path(), :class => "btn btn-default"

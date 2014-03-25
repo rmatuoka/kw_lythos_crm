@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @teams = @user.collaborators
   end
   
   def update
@@ -49,6 +50,10 @@ class UsersController < ApplicationController
   def teams
     @user = User.find(params[:id])
     @teams = @user.collaborators
+  end
+  
+  def team_management
+    @user = User.find(params[:id]) 
   end
   
 end

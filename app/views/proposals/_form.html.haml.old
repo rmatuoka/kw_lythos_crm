@@ -1,18 +1,29 @@
 -content_for :scripts do
   = stylesheet_link_tag "chosen.min.css"  
   = javascript_include_tag "chosen.jquery.min.js"   
- 
   :javascript
+    $('.chosen-select').chosen({no_results_text: "Nenhum resultado para",width: "50%"});
     $(document).ready(function() {
-      $(".various").fancybox({
-        fitToView	: true,
-        autoSize	: true,
-        closeClick	: false,
-        openEffect	: 'none',
-        closeEffect	: 'none',
-        type		: 'iframe',
+      $('#select_fake').change(function() {
+        $.ajax({
+          url: "#{selected_products_path}",
+          data: {
+            id : $('#select_fake').val()
+          },
+          dataType: "script"
+        });
       });
-    });
+      
+      
+      $('input').keypress(function (e) {
+        var code = null;
+        code = (e.keyCode ? e.keyCode : e.which);                
+        return (code == 13) ? false : true;
+      }); 
+     
+      
+    }); 
+
 .row
   .col-sm-12.top-space
     = form_for @proposal do |f|    
@@ -38,7 +49,7 @@
             %input.form-control.qtde#qtde_prod{:placeholder => "Qtde."}
           .col-xs-1
             %a.btn.btn-default.submit-item +
-            =link_to "Calculadora", calculator_proposals_path, :class => "various fancybox.iframe btn btn-default"
+        
           <br /><br />
         
           #items

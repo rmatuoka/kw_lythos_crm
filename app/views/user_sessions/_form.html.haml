@@ -1,7 +1,9 @@
 .row
   .col-sm-12.top-space
     = form_for @user_session do |f|
-      = f.error_messages
+      - if f.error_messages
+        .alert.alert-danger
+          Usuário e/ou senha inválidos
       %p
         = f.text_field :email, :placeholder => "E-mail", :class => "form-control"
       %p

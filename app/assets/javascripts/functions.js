@@ -70,8 +70,81 @@ function add_item_to_proposal(qtde, name, value, show_tabela)
   {
     alert("Atenção! \n\n Preencha os campos corretamente.");
   }
+  //alert(table);
+}
+
+function CalculaMetragem()
+{
+  //Variaveis
+  var largura = parseFloat($("#largura").val());
+  var cumprimento = parseFloat($("#cumprimento").val());
+  var inclinacao = parseInt($("#inclinacao").val());
+  var produto = parseInt($("#produto").val());
+  
+  var area = 0;
+  var fator = 0;
+  var total_pecas = 0;
+  
+  //FATORES
+  var fatores = [
+      [30, 1.044], 
+      [31, 1.047], 
+      [32, 1.050], 
+      [33, 1.053], 
+      [34, 1.056], 
+      [35, 1.059], 
+      [36, 1.063], 
+      [37, 1.066], 
+      [38, 1.070], 
+      [39, 1.073], 
+      
+      [40, 1.077],
+      [41, 1.081],
+      [42, 1.085],
+      [43, 1.089],
+      [44, 1.093],
+      [45, 1.097],
+      [46, 1.10],
+      [47, 1.104],
+      [48, 1.109],
+      [49, 1.114],
+      
+      [50, 1.118],
+      [51, 1.123],
+      [52, 1.127],
+      [53, 1.132],
+      [54, 1.136],
+      [55, 1.141],
+      [56, 1.146],
+      [57, 1.151],
+      [58, 1.156],
+      [59, 1.161],
+      [60, 1.166]
+      // etc..
+  ];
 
   
-
-  //alert(table);
+  if (largura == NaN || cumprimento == NaN || inclinacao == NaN || produto == NaN){
+    alert("Todos os campos são obrigatórios");
+  }
+  else
+  {
+    area = (largura * cumprimento);
+    
+    fatores.forEach(function(f) {
+      //alert(f[1]);
+      if (inclinacao == f[0])
+      {
+        fator = f[1]
+      }
+    });
+    
+    
+    total_pecas = ((area * fator) * produto)
+    total_pecas = total_pecas + (total_pecas * 0.05)
+    
+    $("#resultado").html(parseInt(total_pecas) + " peças");
+  }
+  
+  
 }

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :role, :collaborator_ids
+  attr_accessible :username, :email, :password, :password_confirmation, :role, :collaborator_ids, :avatar, :company_logo
   
   attr_accessor :role  
   #has_many :teams
@@ -16,6 +16,27 @@ class User < ActiveRecord::Base
   
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_users
   after_save :define_role
+  
+  has_attached_file :avatar, 
+                    :styles  => { 
+                      :big => "130x130#", 
+                      :medium => "68x68#", 
+                      :small => "30x30#"},
+                    :convert_options => {
+                      :big => "-quality 75 -strip", 
+                      :medium => "-quality 75 -strip", 
+                      :small => "-quality 75 -strip" },
+                    :default_url => "/assets/users/:style/missing.png"
+  
+  has_attached_file :company_logo, 
+                    :styles  => { 
+                      :big => "130x130#", 
+                      :medium => "68x68#", 
+                      :small => "30x30#"},
+                    :convert_options => {
+                      :big => "-quality 75 -strip", 
+                      :medium => "-quality 75 -strip", 
+                      :small => "-quality 75 -strip" }
   
   #has_many :users
   

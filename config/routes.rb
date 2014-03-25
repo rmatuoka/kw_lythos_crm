@@ -16,6 +16,7 @@ KwLythosCrm::Application.routes.draw do
   resources(:users) do
     member do
       get :teams
+      get :team_management
     end
   end
   resources :home
@@ -31,6 +32,10 @@ KwLythosCrm::Application.routes.draw do
     member do
       get 'approve'
       get 'denial'
+    end
+    
+    collection do
+      get 'calculator'
     end
   }
   resources(:orders){

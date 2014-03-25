@@ -6,7 +6,8 @@
   .col-xs-9
     %h1 biblioteca
   .col-xs-3
-    = link_to "+ Arquivo", new_library_path, :class => "btn btn-default pull-right header-button"
+    - if current_user.has_role?(:administrator)
+      = link_to "+ Arquivo", new_library_path, :class => "btn btn-default pull-right header-button"
 
 - if flash[:notice]
   .alert.alert-success

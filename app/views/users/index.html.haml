@@ -40,5 +40,5 @@
           =link_to t("show"), user_path(user), :class => "btn btn-white"
           =link_to t("edit"), edit_user_path(user), :class => "btn btn-white"
           =link_to t("delete"), user, :confirm => t("msg_delete"), :method => :delete, :class => "btn btn-white"
-          =link_to t("team_users"), teams_user_path(user), :class => "btn btn-white" if  user.role.to_s == "supervisor"
+          =link_to t("team_users"), teams_user_path(user), :class => "btn btn-default" if  user.role.to_s == "supervisor"
         

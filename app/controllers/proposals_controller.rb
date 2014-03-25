@@ -1,6 +1,8 @@
 class ProposalsController < ApplicationController
   before_filter :load_contacts
   
+  layout :definir_layout
+  
   access_control do
       allow :administrator, :all
       allow :supervisor, :all
@@ -54,7 +56,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id]) 
     @proposal_itens = @proposal.proposal_items
 
-    @id_comercial = "Proposta número " + @proposal.id.to_s + " - " + @proposal.contact.name
+    @id_comercial = "Proposta nº " + @proposal.id.to_s + " - " + @proposal.contact.name
 
     respond_to do |format|
       format.html
@@ -65,18 +67,13 @@ class ProposalsController < ApplicationController
                 :layout       => "/layouts/proposal.html.haml",
                 :template     => "/proposals/generate_pdf.html.haml",
                 :show_as_html => params[:debug].present?,
-                :margin       => {:top                => 20,                     # default 10 (mm)
-                                  :bottom             => 20,
-                                  :left               => 15,
-                                  :right              => 15},                  
+                :margin       => {:top                => 0,                     # default 10 (mm)
+                                  :bottom             => 30,
+                                  :left               => 2,
+                                  :right              => 2},                  
                 :page_size => 'A4',
 
-                :header => {
-                            :right => '[page] of [topage]',
-                            :html => { 
-                                      :template => '/proposals/_header_pdf.html.haml',  
-                                      },
-                            },
+                
 
                 :footer => {
                             :html => { 
@@ -128,4 +125,17 @@ class ProposalsController < ApplicationController
   def load_contacts
     @contacts = Contact.all.collect { |c| [c.name, c.id] }
   end
+  
+  def calculator
+    
+  end
+  
+  def definir_layout
+    case action_name
+      when "calculator"
+        "blank"
+      else
+        "application"
+    end
+   end
 end

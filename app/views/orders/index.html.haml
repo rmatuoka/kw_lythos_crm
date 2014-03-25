@@ -14,7 +14,7 @@
     Registro modificado com
     %b sucesso!
 
-.col-xs-12.search
+.col-xs-12.search.a
   %form
     .col-xs-11
       %label.sr-only
@@ -53,4 +53,4 @@
             - when 6
               %span.entregue Entregue
               
-        %td=link_to "Detalhes", order_path(p), :class => "red"
+        %td=link_to "Detalhes", order_path(p), :class => "btn btn-default"

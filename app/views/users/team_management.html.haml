@@ -1,0 +1,24 @@
+%ol.breadcrumb
+  %li=link_to "Home", root_path
+  %li=link_to "Usuários", users_path    
+  %li.active=link_to t("team_users") + " - " + @user.username, "javascript:void(0);"   
+
+.row
+  .col-xs-9.a
+    %h1="Equipe de vendas de #{@user.username}"
+
+.row
+  .col-sm-12.top-space.a  
+    = form_for @user do |f|
+      
+      -if @user.role.to_s == "supervisor"
+        %h2=t("team_users")
+        -User.all.each do |user|
+          - if (user.id != @user.id && user.role.to_s == "seller" )
+            = check_box_tag 'user[collaborator_ids][]', user.id, @user.collaborators.include?(user), :class=> "input_radio"
+            = user.username
+            <br />
+        <br /><br />
+      
+      =f.submit "Atualizar Equipe", :class => "btn btn-default"
+      =link_to "Cancelar", "javascript:history.go(-1);", :class => "btn btn-white"

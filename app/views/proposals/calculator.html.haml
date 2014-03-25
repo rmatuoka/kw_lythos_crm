@@ -1,0 +1,31 @@
+.row
+  .col-xs-12
+    %h1 Calculadora
+  
+  .col-xs-6.a
+    %h2 Informações do Telhado
+    %p 
+      Telha
+      %select.form-control{:id => "produto"}
+        %option{:value => "7.6"} Magna
+        %option{:value => "10.4"} Piana
+        %option{:value => "10.4"} Due
+        %option{:value => "10.4"} Legno
+        %option{:value => "10.4"} Rústica
+        %option{:value => "10.4"} Flat
+        %option{:value => "10.4"} Prisma
+      
+      Largura
+      %input.form-control{:type => "text", :id => "largura", :placeholder => "10"} 
+      
+      Cumprimento
+      %input.form-control{:type => "text", :id => "cumprimento", :placeholder => "10"}
+      
+      Inclinação
+      %input.form-control{:type => "text", :id => "inclinacao", :placeholder => "30% - 60%"}
+      
+      %a.btn.btn-default{:href => "javascript:void(0);", :id=>"btn_calcular", :onclick => "CalculaMetragem()"} Calcular
+      
+  .col-xs-6
+    %h1 Resultado
+    %h2.label.label-info{:id =>"resultado"} 0 peças 

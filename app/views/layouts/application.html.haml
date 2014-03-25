@@ -4,6 +4,7 @@
     %title Lythos CRM - 2013
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = stylesheet_link_tag "application.css", :media => "all"
+    = stylesheet_link_tag "jquery.fancybox"
     = stylesheet_link_tag "bootstrap"
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800", :rel => "stylesheet", :type => "text/css"}/
     = csrf_meta_tags
@@ -13,7 +14,7 @@
         = link_to image_tag ("template/logo.jpg"), root_path
       .col-xs-10.personal-info
         %div
-          = image_tag "template/profile_pic.jpg"
+          = link_to(image_tag(current_user.avatar.url(:medium)), edit_user_path(current_user))
           %span.user-name
             = current_user ? raw(current_user.username+" / "+link_to("Sair", logout_path)) : raw(link_to("Entrar", login_path)+" / "+link_to("Registrar", register_path))
           = image_tag "template/btn_settings.jpg"
@@ -22,7 +23,7 @@
         .container
           %h6 Comercial
           %ul         
-            %li=link_to("Orçamentos", proposals_path, :class => "orcamentos")          
+            %li=link_to("Orçamentos", proposals_path, :class => "orcamentos")
             %li=link_to("Pedidos", orders_path, :class => "pedidos")
 
             
@@ -59,6 +60,7 @@
   = javascript_include_tag "application"
   = javascript_include_tag "bootstrap"
   = javascript_include_tag "functions"
+  = javascript_include_tag "jquery.fancybox"
   = yield :scripts
   :javascript
     $(window).load(function() {

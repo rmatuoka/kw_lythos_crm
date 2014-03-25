@@ -23,4 +23,12 @@
 
   %h3 Tipo de Usuário
   %h2.details=@user.role
-  <br /><br /><br /><br />
+  <br />
+
+  -if @teams.count > 0
+    %h2=t("team_users")
+    -@teams.each do |user|
+      - if (user.id != @user.id && user.role.to_s == "seller" )
+        = user.username
+        <br />
+    <br /><br />

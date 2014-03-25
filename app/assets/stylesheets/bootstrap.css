@@ -1388,7 +1388,9 @@ table th[class*="col-"] {
 .table > thead > tr.active > th,
 .table > tbody > tr.active > th,
 .table > tfoot > tr.active > th {
-  background-color: #f5f5f5;
+  
+  /*background-color: #f5f5f5;*/
+  background-color: #c77376 !important;
 }
 .table > thead > tr > td.success,
 .table > tbody > tr > td.success,
@@ -3894,7 +3896,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   color: #cccccc;
 }
 .breadcrumb > .active {
-  color: #999999;
+  color: #c77376 !important;
 }
 .pagination {
   display: inline-block;
