@@ -19,7 +19,9 @@ class ProposalsController < ApplicationController
   
   def new
     @proposal = Proposal.new
-    @products = Product.all(:order => :name, :conditions =>["active = true"], :include => [:color, :finish]).collect { |p| ["#{p.name} #{p.color.name} #{p.finish.name}, p.id]}
+    @products = Product.all(:order => :name, :conditions =>["active = true"], :include => [:color, :finish]).collect { |p| 
+      ["#{p.name} #{p.color.name} #{p.finish.name}", p.id]
+      }
   end
 
   def create
