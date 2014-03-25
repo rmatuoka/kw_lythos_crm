@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_filter :load_dropdowns, :only => [:new, :edit]
   def index
     @products = Product.all
+    
   end
 
   def show
