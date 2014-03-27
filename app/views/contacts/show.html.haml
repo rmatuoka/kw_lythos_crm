@@ -26,20 +26,22 @@
   .clearfix
 
 .row.top-space
-  .col-sm-3
+  .col-sm-5
     .col-sm-12.data-box
       .col-sm-12.info-box
-        = image_tag("template/profile-pic-big.jpg", :class => "profile-pic-big")
+        = image_tag("template/company-building-icon.png ", :class => "profile-pic-big")
   
     .row
       .col-sm-12
-        = link_to "Alterar foto", "#", :class => "btn btn-white cem_p top-space"
+        =# link_to "Alterar foto", "#", :class => "btn btn-white cem_p top-space"
         <br />
         = link_to "Editar contato", edit_contact_path(@contact), :class => "btn btn-white cem_p"
         <br />
-        =link_to "Deletar contato", @contact, :confirm => "Deseja excluir este registro?", :method => :delete, :class => "btn btn-white cem_p"
-    
-  .col-sm-9
+        =link_to "Deletar contato", @contact, :confirm => "Deseja excluir este registro?", :method => :delete, :class => "btn btn-warning cem_p"
+        <br />
+        %a.btn.btn-info.cem_p{:href => "/contacts"} Voltar
+        <br />
+  .col-sm-7
     %h2=@contact.name
     =@contact.email 
     <br />

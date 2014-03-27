@@ -8,9 +8,20 @@
   %li.active=link_to "Home", "javascript:void(0);"
 
 .col-xs-7.metas
-  %h1.h1-home Metas
+  %h1.h1-home Últimos Orçamentos
   
-  = image_tag("template/grafico_marcacao.jpg", :class => "img-responsive")
+  %table.table.table-condensed
+    %tr
+      %th
+      %th Para
+      %th Enviado por
+      %th Data
+    - @proposals.each do |p|
+      %tr
+        %td=p.id
+        %td=link_to p.contact.name, order_path(p), :class => "red"
+        %td=p.user.username
+        %td=p.created_at.strftime("%d/%m/%Y")
   
 .col-xs-5.ultimos-pedidos
   %h1.h1-home Últimos Pedidos
@@ -18,10 +29,10 @@
   %table.table.table-condensed
     %tr
       %th
-      %th Cliente
-      %th Representantes
+      %th Para
+      %th Enviado por
       %th Data
-    - @proposals.each do |p|
+    - @orders.each do |p|
       %tr
         %td=p.id
         %td=link_to p.contact.name, order_path(p), :class => "red"

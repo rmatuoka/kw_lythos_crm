@@ -30,7 +30,7 @@
           %h6 Utilitários
           %ul
             %li=link_to("Contatos", contacts_path, :class => "contatos")
-            %li=link_to("Biblioteca", libraries_path, :class => "biblioteca")
+            %li=#link_to("Biblioteca", libraries_path, :class => "biblioteca")
           
           - if current_user.has_role?(:administrator)  
             %h6 Administração

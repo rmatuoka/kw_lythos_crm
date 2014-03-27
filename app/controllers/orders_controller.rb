@@ -6,11 +6,7 @@ class OrdersController < ApplicationController
   end
   
   def index
-    if current_user.has_role?(:administrator)
-      @proposals = Proposal.all(:conditions => ['status > 2'])
-    else
-      @proposals = current_user.proposals.all
-    end
+    @proposals = Proposal.all_by_role(current_user, 'status > 2')
   end
   
   def show

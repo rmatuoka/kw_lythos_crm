@@ -29,6 +29,7 @@
     %tr
       %th ID
       %th Cliente
+      %th Enviado por
       %th Valor
       %th Data
       %th Status
@@ -40,6 +41,8 @@
       %tr
         %td=p.id
         %td=link_to p.contact.name, contact_path(p.contact.id), :class => "red"
+        %td
+          %span.label.label-info=p.user.username
         %td=number_to_currency($total_items)
         %td=p.created_at.strftime("%d/%m/%Y")
         %td 

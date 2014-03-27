@@ -6,7 +6,8 @@ class HomeController < ApplicationController
   end
   
   def index
-    @proposals = Proposal.all(:conditions => ['status > 2'], :limit => 3)
+    @proposals = Proposal.all_by_role_last_3(current_user, 'status < 4')
+    @orders = Proposal.all_by_role_last_3(current_user, 'status > 2')
     @bulletins = Bulletin.all(:limit => 3)
   end
 end

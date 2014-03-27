@@ -10,11 +10,7 @@ class ProposalsController < ApplicationController
   end
   
   def index
-    if current_user.has_role?(:administrator)
-      @proposals = Proposal.all(:conditions => ['status < 4'])
-    else
-      @proposals = current_user.proposals.all
-    end
+    @proposals = Proposal.all_by_role(current_user, 'status < 4')
   end
   
   def new
@@ -125,7 +121,11 @@ class ProposalsController < ApplicationController
   end
   
   def load_contacts
-    @contacts = Contact.all.collect { |c| [c.name, c.id] }
+    if current_user.has_role?(:administrator)
+      @contacts = Contact.all.collect { |c| [c.name, c.id] }
+    else
+      @contacts = current_user.contacts.all.collect { |c| [c.name, c.id] }
+    end
   end
   
   def calculator
@@ -136,6 +136,8 @@ class ProposalsController < ApplicationController
     case action_name
       when "calculator"
         "blank"
+      when "show"
+        "proposal"
       else
         "application"
     end

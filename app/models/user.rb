@@ -30,9 +30,9 @@ class User < ActiveRecord::Base
   
   has_attached_file :company_logo, 
                     :styles  => { 
-                      :big => "130x130#", 
-                      :medium => "68x68#", 
-                      :small => "30x30#"},
+                      :big => "200x200>", 
+                      :medium => "100x100#", 
+                      :small => "50x50>"},
                     :convert_options => {
                       :big => "-quality 75 -strip", 
                       :medium => "-quality 75 -strip", 

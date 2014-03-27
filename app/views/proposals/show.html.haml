@@ -1,6 +1,6 @@
 .container{:style => "width:850px;"}    
   .main_content{:style => "margin-top:0px;"}
-    =wicked_pdf_image_tag "template_pdf/header.jpg"
+    =image_tag "template_pdf/header.jpg"
     %br/
     
     %h1 Dados para Faturamento
@@ -49,8 +49,7 @@
           %h3="Pedido Nº #{@proposal.id}"
           %h4="Vendedor: #{@proposal.user.username}"
           %h4="Data do pedido: #{@proposal.created_at.strftime('%d/%m/%Y')}"
-        %td{:valign => "middle"}=image_tag( URI.join( request.url, @proposal.user.company_logo.url(:big)))
-    
+        %td{:valign => "middle"}=image_tag(@proposal.user.company_logo.url(:big))
     
     
     %table.table.pedidos{:style => "width:850px;"}  
@@ -77,3 +76,4 @@
     %p O PRAZO MÁXIMO PARA FATURAMENTO DOS PEDIDOS EM CARTEIRA É DE 30 DIAS
     %p OS PEDIDOS SEM O FORMULÁRIO ASSINADO NÃO SERÃO ACEITOS
     %p A LYTHOS.  RESERVA-SE  AO DIREITO DE EFETUAR ALTERAÇÕES EM SEUS PREÇOS SEM CONSULTA PRÉVIA, NESTES CASOS OS PEDIDOS PODERÃO SER CANCELADOS
+              
