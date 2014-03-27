@@ -36,7 +36,9 @@
   .col-sm-12.top-space
     = form_for @proposal do |f|    
       //%p.form-msg-danger Este campo está incorreto:
-      = f.select :contact_id, @contacts, :class => "form-control"
+      %label Selecione o destinatário
+      = f.select :contact_id, @contacts, :class => "form-control", :prompt => "Selecione"
+      =link_to "[adicionar contato]", new_contact_path, :class => "red"
       <br /><br />
       = f.text_field :email, :class => "form-control", :placeholder => "E-mail"
       <br />
