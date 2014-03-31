@@ -42,13 +42,16 @@
         %a.btn.btn-info.cem_p{:href => "/contacts"} Voltar
         <br />
   .col-sm-7
-    %h2=@contact.name
+    %h2
+      =@contact.name
+      
     =@contact.email 
+    <br />
+    .label.label-info="#{@contact.category}"
     <br />
     =@contact.phone
     <br />
     =@contact.cellphone
-    <br />
     <br />
     
     =@contact.address

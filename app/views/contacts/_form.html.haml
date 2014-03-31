@@ -1,7 +1,12 @@
+
 .row
   .col-sm-12.top-space
     = form_for @contact do |f|    
-      %p.form-msg-danger Este campo está incorreto:
+      -if f.error_messages
+        .alert.alert-danger.a
+          %b Ops!
+          Todos os campos são obrigatórios
+      
       -#%input.form-control.form-danger{:type => "text", :placeholder => "Nome Completo"}
       = f.hidden_field :user_id, :value => current_user.id.to_s
       = f.text_field :name, :class => "form-control", :placeholder => "Nome Completo"
@@ -10,6 +15,11 @@
       <br />
       = f.text_field :cpf_cnpj, :class => "form-control", :placeholder => "CPF/CNPJ"
       <br />
+      %label Tipo de Contato
+      %br
+      = f.select (:category, options_for_select([['Cliente'],['Revenda'],['Revendedor'],['Fornecedor'],['Lythos']]),:class => "form-control")
+      %br
+      %br
       = f.text_field :address, :class => "form-control", :placeholder => "Endereço"
       <br />
       = f.text_field :city, :class => "form-control", :placeholder => "Cidade"

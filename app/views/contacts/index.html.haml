@@ -1,4 +1,4 @@
-%ol.breadcrumb
+%ol.breadcrumb.a
   %li=link_to "Home", "javascript:void(0);"
   %li.active=link_to "Contatos", "javascript:void(0);"
 
@@ -63,9 +63,13 @@
           .col-sm-4
             = link_to (image_tag("template/company-building-icon.png", :class =>"picture-list", :width => "80"), contact_path(contact))
           .col-sm-8
-            %h2=contact.name
+            %h2
+              =contact.name
+              =link_to "[editar]", edit_contact_path(contact), :style => "font-size:10px; font-weight:normal;"
             %p 
               =contact.email
+              %br
+              .label.label-info="#{contact.category}"
               <br />
               =contact.phone
               <br />

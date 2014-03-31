@@ -40,8 +40,6 @@
       = f.select :contact_id, @contacts, :class => "form-control", :prompt => "Selecione"
       =link_to "[adicionar contato]", new_contact_path, :class => "red"
       <br /><br />
-      = f.text_field :email, :class => "form-control", :placeholder => "E-mail"
-      <br />
       = f.text_field :cc, :class => "form-control", :placeholder => "Com cópia para"
       <br />
       
